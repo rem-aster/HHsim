@@ -6,7 +6,7 @@ MATLAB и лицензии не нужны: программа работает 
 |---|---|
 | `start_hhsim.m` | Загрузчик: запускает `hhsim` в Octave, ждёт закрытия главного окна и выходит |
 | `windows/build.sh`, `windows/hhsim.nsi` | Установщик для Windows (NSIS) со встроенным GNU Octave для Windows |
-| `macos/build.sh`, `macos/launcher.sh`, `macos/Info.plist` | `HHsim.app` для macOS; использует Octave из Homebrew и при его отсутствии предлагает установить |
+| `macos/build.sh`, `macos/launcher.sh`, `macos/Info.plist`, `macos/dmg_settings.py`, `macos/dmg-background*.png` | Образ `HHsim.dmg` с окном «перетащите в Программы»; при первом запуске приложение само скачивает GNU Octave |
 | `hhsim.ico`, `hhsim.png`, `macos/hhsim.icns` | Значок программы |
 
 ## Windows
@@ -28,16 +28,24 @@ packaging/windows/build.sh                # -> dist/HHsim-3.7-ru-Windows-Install
 ## macOS
 
 ```sh
-packaging/macos/build.sh                  # -> dist/HHsim-3.7-ru-macOS.zip
+pip3 install dmgbuild
+packaging/macos/build.sh                  # на Mac -> dist/HHsim-3.7-ru-macOS.dmg
 ```
 
-Собирать можно на любой ОС. Приложение не содержит Octave: собрать переносимый Octave для
-macOS сложно, а Homebrew ставит его одной командой (`brew install octave`). При первом
-запуске код копируется в `~/Library/Application Support/HHsim/<версия>`, потому что
-программа сохраняет файлы рядом с кодом.
+Образ открывается привычным окном «перетащите HHsim в папку Программы». Приложение
+само по себе маленькое (скрипт-загрузчик и код HHsim). При первом запуске, если Octave
+нет, оно спрашивает разрешения и скачивает GNU Octave из conda-forge с помощью
+micromamba в `~/Library/HHsim/octave-<версия>` — без Терминала, пароля и прав
+администратора. Файлы, скачанные так, не получают карантинный атрибут, поэтому
+Gatekeeper спрашивает подтверждение только один раз, для самого HHsim.app. Если Octave
+уже установлен (например, из Homebrew), используется он. Код копируется в
+`~/Library/HHsim/<версия>`, потому что программа сохраняет файлы рядом с кодом.
+
+Не на Mac `build.sh` собирает только архив `HHsim-3.7-ru-macOS.zip` с приложением.
 
 ## Проверка
 
 `tests/smoke_test.m` запускает программу, подаёт Стим1 и проверяет спайк, затем прогоняет
 протокол фиксации потенциала. В CI (`.github/workflows/build.yml`) он выполняется в Octave
-на Linux, во встроенном Octave после установки на Windows и в Octave из Homebrew на macOS.
+на Linux, во встроенном Octave после установки на Windows и на macOS — после того как приложение из
+образа DMG само установит Octave.

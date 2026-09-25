@@ -54,8 +54,6 @@ jobs:
           OCTAVE_VERSION=$OCTAVE_WIN_VERSION \
           OCTAVE_ARCHIVE=build/octave-archive/octave-$OCTAVE_WIN_VERSION-w64.7z \
             packaging/windows/build.sh dist
-      - name: Приложение для macOS
-        run: packaging/macos/build.sh dist
       - name: Архив исходного кода
         run: |
           V=$(head -1 code/VERSION | sed 's/.*version //; s/\r//')
@@ -106,38 +104,55 @@ jobs:
           Start-Sleep -Seconds 5
           if (Test-Path 'C:\HHsim\octave') { throw 'деинсталлятор не удалил файлы' }
 
-  test-macos:
-    name: Проверка приложения (macOS)
-    needs: package
+  package-macos:
+    name: Образ DMG и проверка (macOS)
     runs-on: macos-latest
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+      - name: Установить dmgbuild
+        run: pip3 install --break-system-packages dmgbuild || pip3 install dmgbuild
+      - name: Собрать HHsim.dmg
+        run: packaging/macos/build.sh dist
+      - uses: actions/upload-artifact@v4
         with:
-          name: HHsim-packages
-          path: dist
-      - name: Установить Octave (Homebrew)
-        run: brew install octave
-      - name: Автотест кода из HHsim.app
+          name: HHsim-macos
+          path: dist/*.dmg
+          compression-level: 0
+      - name: Смонтировать образ и скопировать приложение
         run: |
-          cd dist && unzip -q *-macOS.zip
-          test -x HHsim.app/Contents/MacOS/HHsim
-          export HHSIM_CODE="$PWD/HHsim.app/Contents/Resources/hhsim/code"
-          cd .. && octave --no-gui --norc --quiet --eval "addpath('tests'); smoke_test"
+          hdiutil attach dist/*-macOS.dmg -mountpoint /tmp/hhsim-dmg -nobrowse
+          ls -la /tmp/hhsim-dmg
+          test -L /tmp/hhsim-dmg/Программы
+          mkdir -p /tmp/Apps && cp -R /tmp/hhsim-dmg/HHsim.app /tmp/Apps/
+          hdiutil detach /tmp/hhsim-dmg
+      - name: Первый запуск — установка Octave самим приложением
+        env:
+          HHSIM_IGNORE_SYSTEM_OCTAVE: '1'
+        run: |
+          OCT=$(/tmp/Apps/HHsim.app/Contents/MacOS/HHsim --install-only)
+          echo "Octave: $OCT"
+          test -x "$OCT"
+          echo "OCT=$OCT" >> "$GITHUB_ENV"
+      - name: Автотест в установленном Octave
+        run: |
+          export OCTAVE_HOME="$(dirname "$(dirname "$OCT")")"
+          export HHSIM_CODE=/tmp/Apps/HHsim.app/Contents/Resources/hhsim/code
+          "$OCT" --no-gui --norc --quiet --eval "addpath('tests'); smoke_test"
 
   release:
     name: Публикация выпуска
     if: github.event_name == 'workflow_dispatch' && inputs.publish
-    needs: [test-linux, test-windows, test-macos]
+    needs: [test-linux, test-windows, package-macos]
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: HHsim-packages
+          pattern: HHsim-*
           path: dist
+          merge-multiple: true
       - uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ inputs.tag }}
@@ -149,7 +164,7 @@ jobs:
             ## Скачать
 
             * 🪟 **Windows 10/11:** [HHsim-3.7-ru-Windows-Installer.exe](https://github.com/rem-aster/HHsim/releases/latest/download/HHsim-3.7-ru-Windows-Installer.exe)
-            * 🍎 **Mac:** [HHsim-3.7-ru-macOS.zip](https://github.com/rem-aster/HHsim/releases/latest/download/HHsim-3.7-ru-macOS.zip)
+            * 🍎 **Mac:** [HHsim-3.7-ru-macOS.dmg](https://github.com/rem-aster/HHsim/releases/latest/download/HHsim-3.7-ru-macOS.dmg)
             * 🐧 **Linux:** [HHsim-3.7-ru-source.zip](https://github.com/rem-aster/HHsim/releases/latest/download/HHsim-3.7-ru-source.zip)
 
             Пошаговая инструкция по установке: https://github.com/rem-aster/HHsim#readme

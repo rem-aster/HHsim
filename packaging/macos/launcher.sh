@@ -1,43 +1,105 @@
 #!/bin/bash
-# Запуск HHsim на macOS. Нужен GNU Octave (Homebrew: brew install octave).
+# Запуск HHsim на macOS.
+#
+# HHsim работает в GNU Octave. Если Octave на компьютере нет, при первом запуске
+# программа сама скачивает его (из conda-forge с помощью micromamba) в папку
+# пользователя ~/Library/HHsim — без Терминала, пароля и прав администратора.
+#
+#   HHsim.app/Contents/MacOS/HHsim                 обычный запуск
+#   HHsim.app/Contents/MacOS/HHsim --install-only  только установить Octave (для проверки в CI)
+
+OCTAVE_VERSION="10.3"
 RES="$(cd "$(dirname "$0")/../Resources" && pwd)"
 VERSION="$(cat "$RES/VERSION" 2>/dev/null)"
-export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+BASE="$HOME/Library/HHsim"          # без пробелов: так надёжнее для Octave
+ENV_DIR="$BASE/octave-$OCTAVE_VERSION"
+LOG="$BASE/install.log"
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+INTERACTIVE=1
+[ "$1" = "--install-only" ] && INTERACTIVE=0
+
+dialog() {   # dialog "текст" "кнопка1" "кнопка2" -> печатает нажатую кнопку
+  [ $INTERACTIVE = 1 ] || { echo "${3:-$2}"; return; }
+  local buttons="{\"$2\"}" default="$2"
+  [ -n "$3" ] && buttons="{\"$2\", \"$3\"}" && default="$3"
+  osascript - "$1" <<EOF 2>/dev/null
+on run argv
+  button returned of (display dialog (item 1 of argv) buttons $buttons default button "$default" with title "HHsim" with icon note)
+end run
+EOF
+}
 
 find_octave() {
-  if command -v octave >/dev/null 2>&1; then command -v octave; return; fi
-  for f in /Applications/Octave*.app/Contents/Resources/usr/bin/octave \
-           "$HOME"/Applications/Octave*.app/Contents/Resources/usr/bin/octave; do
-    [ -x "$f" ] && { echo "$f"; return; }
-  done
+  if [ -x "$ENV_DIR/bin/octave" ]; then echo "$ENV_DIR/bin/octave"; return; fi
+  [ -n "$HHSIM_IGNORE_SYSTEM_OCTAVE" ] && return                               # для проверки установки
+  if command -v octave >/dev/null 2>&1; then command -v octave; return; fi   # например, из Homebrew
+}
+
+install_octave() {
+  mkdir -p "$BASE"
+  : > "$LOG"
+  case "$(uname -m)" in
+    arm64) PLATFORM=osx-arm64 ;;
+    *)     PLATFORM=osx-64 ;;
+  esac
+  PLATFORM="${HHSIM_PLATFORM:-$PLATFORM}"   # для проверки на других системах
+  local tmp="$BASE/tmp"
+  rm -rf "$tmp" "$ENV_DIR.partial" && mkdir -p "$tmp"
+  {
+    echo "Скачивание micromamba ($PLATFORM)..."
+    curl -fsSL --retry 3 "https://micro.mamba.pm/api/micromamba/$PLATFORM/latest" -o "$tmp/micromamba.tar.bz2" &&
+    tar -xjf "$tmp/micromamba.tar.bz2" -C "$tmp" bin/micromamba &&
+    echo "Установка GNU Octave $OCTAVE_VERSION..." &&
+    MAMBA_ROOT_PREFIX="$tmp/root" "$tmp/bin/micromamba" create -y -q \
+        -p "$ENV_DIR.partial" -c conda-forge --override-channels "octave=$OCTAVE_VERSION" &&
+    mv "$ENV_DIR.partial" "$ENV_DIR"
+  } >> "$LOG" 2>&1
+  local status=$?
+  rm -rf "$tmp"
+  return $status
 }
 
 OCTAVE="$(find_octave)"
 if [ -z "$OCTAVE" ]; then
-  ANSWER=$(osascript -e 'button returned of (display dialog "Для работы HHsim нужна бесплатная программа GNU Octave. Её нужно установить один раз.\n\nНажмите «Установить» — откроется окно Терминала. Если там попросят пароль, введите пароль от вашего Mac (символы при вводе не отображаются — это нормально) и нажмите Return. Если попросят «Press RETURN», нажмите Return. Установка займёт 10–20 минут.\n\nКогда в Терминале появится слово «Готово», закройте его и снова откройте HHsim." buttons {"Отмена", "Установить"} default button "Установить" with title "HHsim" with icon note)' 2>/dev/null)
-  if [ "$ANSWER" = "Установить" ]; then
-    SCRIPT="${TMPDIR:-/tmp}/hhsim-install-octave.command"
-    cat > "$SCRIPT" <<'INSTALL'
-#!/bin/bash
-echo "Установка GNU Octave для HHsim..."
-if ! command -v brew >/dev/null 2>&1 && [ ! -x /opt/homebrew/bin/brew ] && [ ! -x /usr/local/bin/brew ]; then
-  echo "Сначала устанавливается Homebrew (менеджер программ для macOS)."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || { echo "Не удалось установить Homebrew."; exit 1; }
-fi
-eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shellenv)"
-brew install octave || { echo "Не удалось установить Octave."; exit 1; }
-echo
-echo "Готово. Закройте это окно и снова откройте HHsim."
-INSTALL
-    chmod +x "$SCRIPT"
-    open -a Terminal "$SCRIPT"
+  ANSWER=$(dialog "Добро пожаловать в HHsim!
+
+Для работы программе нужна бесплатная среда GNU Octave. Её нужно один раз скачать (около 500 МБ). Это займёт 5–15 минут, нужен интернет.
+
+Ничего вводить не придётся — просто подождите." "Отмена" "Скачать")
+  [ "$ANSWER" = "Скачать" ] || exit 0
+
+  PROGRESS_PID=""
+  if [ $INTERACTIVE = 1 ]; then
+    # окно «идёт установка»; закроем его сами, когда всё будет готово
+    osascript -e 'display dialog "Идёт установка GNU Octave…
+
+Это займёт 5–15 минут. Можно заниматься другими делами — HHsim откроется сам, когда всё будет готово." buttons {"Скрыть"} default button "Скрыть" with title "HHsim" with icon note giving up after 3600' >/dev/null 2>&1 &
+    PROGRESS_PID=$!
   fi
-  exit 1
+  install_octave
+  STATUS=$?
+  [ -n "$PROGRESS_PID" ] && kill "$PROGRESS_PID" 2>/dev/null
+  if [ $STATUS -ne 0 ]; then
+    dialog "Не удалось установить GNU Octave. Проверьте подключение к интернету и попробуйте открыть HHsim ещё раз.
+
+Подробности записаны в файле ~/Library/HHsim/install.log" "OK" >/dev/null
+    exit 1
+  fi
+  [ $INTERACTIVE = 1 ] || { echo "$ENV_DIR/bin/octave"; exit 0; }
+  OCTAVE="$ENV_DIR/bin/octave"
+elif [ $INTERACTIVE = 0 ]; then
+  echo "$OCTAVE"; exit 0
 fi
 
-# Программа сохраняет файлы (положение окон и т. п.) рядом с кодом,
+# Octave из conda-forge ищет свои файлы по переменной OCTAVE_HOME
+case "$OCTAVE" in
+  "$ENV_DIR"/*) export OCTAVE_HOME="$ENV_DIR" ;;
+esac
+
+# Программа сохраняет файлы (положение окон) рядом с кодом,
 # поэтому запускаем её из копии в папке пользователя.
-DATA="$HOME/Library/Application Support/HHsim/$VERSION"
+DATA="$BASE/$VERSION"
 if [ ! -f "$DATA/code/hhsim.m" ]; then
   mkdir -p "$DATA"
   cp -R "$RES/hhsim/" "$DATA/"

@@ -15,7 +15,7 @@ sudo apt install curl p7zip-full nsis
 packaging/windows/build.sh          # -> dist/HHsim-3.7-ru-Windows-Installer.exe
 
 # macOS-приложение (собирается на любой ОС): нужен zip
-packaging/macos/build.sh            # -> dist/HHsim-3.7-ru-macOS.zip
+packaging/macos/build.sh            # -> dist/HHsim-3.7-ru-macOS.dmg
 
 # проверка в Octave (на сервере без экрана — через xvfb-run)
 xvfb-run octave --no-gui --eval "addpath('tests'); smoke_test"
@@ -35,4 +35,4 @@ macOS и только после этого создаст тег и GitHub Rele
 
 Имена файлов выпуска должны совпадать со ссылками в `README.md`
 (`releases/latest/download/<имя файла>`): `HHsim-3.7-ru-Windows-Installer.exe`,
-`HHsim-3.7-ru-macOS.zip`, `HHsim-3.7-ru-source.zip`. При смене версии обновите их.
+`HHsim-3.7-ru-macOS.dmg`, `HHsim-3.7-ru-source.zip`. При смене версии обновите их.
