@@ -7,10 +7,10 @@ function yi = make_gate_rate(varname,gatename,xi,yi,xtinc,yinc,rate);
   xind = 20; 
 
   if strcmp(rate.type,'alpha') == 1
-    rlabel = 'alpha:    Closed \rightarrow Open';
+    rlabel = '\alpha:    закрыт \rightarrow открыт';
     rcolor = [1 0.5 0.5];
   else
-    rlabel = 'beta:    Open \rightarrow Closed';
+    rlabel = '\beta:    открыт \rightarrow закрыт';
     rcolor = [0.5 0.5 1];
   end
   h=make_valtext('',xi,yi,'%s',rlabel);
@@ -31,19 +31,19 @@ function yi = make_gate_rate(varname,gatename,xi,yi,xtinc,yinc,rate);
   handles.(varname).(gatename).(rate.type).fn = hand;
   yi = yi + yinc;
 
-  make_valtext('',xi+xind,yi,'%s','magnitude (c)');
+  make_valtext('',xi+xind,yi,'%s','амплитуда (c)');
   hand = make_valbox({varname gatename rate.type 'c'},xi+xtinc,yi,rate.c,0,10,1, ...
 		recalc_string, '%4.3f', '+', 0.01);
   handles.(varname).(gatename).(rate.type).c = hand;
   yi = yi + yinc;
 
-  make_valtext('',xi+xind,yi,'%s','threshold (th)');
+  make_valtext('',xi+xind,yi,'%s','порог (th)');
   hand = make_valbox({varname gatename rate.type 'th'},xi+xtinc,yi,rate.th,-100,100,1, ...
 		recalc_string, '%4.3f', '+', 5);
   handles.(varname).(gatename).(rate.type).th = hand;
   yi = yi + yinc;
 
-  make_valtext('',xi+xind,yi,'%s','slope (s)');
+  make_valtext('',xi+xind,yi,'%s','крутизна (s)');
   hand = make_valbox({varname gatename rate.type 's'},xi+xtinc,yi,rate.s,-1,1,1, ...
 		recalc_string, '%4.3f', '+', 0.01);
   handles.(varname).(gatename).(rate.type).s = hand;

@@ -1,154 +1,157 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>Guide to Using HHsim</title></head><body bgcolor="#ccffff">
+<html lang="ru"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Руководство по работе с HHsim</title></head><body bgcolor="#ccffff">
     <center>
-      <h1>Guide to Using HHsim</h1>
+      <h1>Руководство по работе с HHsim</h1>
     </center>
 
-HHsim is a graphical simulation of a section of excitable neuronal
-membrane using the Hodgkin-Huxley equations.  It provides full access
-to the Hodgkin-Huxley parameters, membrane parameters, stimulus
-parameters, and ion concentrations, and can be used for many sorts
-of <a href="http://www.cs.cmu.edu/%7Edst/HHsim/exercises.html">exercises</a>.<p>
+HHsim — это графическая модель участка возбудимой мембраны нейрона,
+основанная на уравнениях Ходжкина–Хаксли. Программа даёт полный доступ
+к параметрам Ходжкина–Хаксли, параметрам мембраны, параметрам стимула
+и концентрациям ионов и подходит для самых разных
+<a href="exercises.html">упражнений</a>.<p>
 
-</p><h3> Starting HHsim </h3>
+</p><h3> Запуск HHsim </h3>
 
-If you've downloaded and installed the executable version of HHsim for
-Windows, you can start HHsim via a shortcut on the desktop or an entry
-in the Start menu.  Or you can go to the HHsim folder and click on the
-icon for hhsim.exe.<p>
+Если вы скачали и установили исполняемую версию HHsim для
+Windows, запустить HHsim можно с помощью ярлыка на рабочем столе или пункта
+в меню «Пуск». Можно также открыть папку HHsim и щёлкнуть по значку
+hhsim.exe.<p>
 
-To run the Unix executable, cd to that directory and type ./hhsim to
-begin.</p><p>
+На macOS запустите HHsim из папки «Программы» (/Applications).</p><p>
 
-If you've downloaded just the Matlab source code, run Matlab, cd to
-the directory containing the source, and type "hhsim".  Note: HHsim
-requires Matlab version 6 or higher.</p><p>
+Если вы скачали только исходный код Matlab, запустите Matlab, перейдите
+в каталог с исходным кодом и введите «hhsim». Примечание: русской версии HHsim
+требуется Matlab R2020a или новее (оригинальной английской версии достаточно Matlab 6).</p><p>
 
-</p><h3> Main Window </h3>
+</p><h3> Главное окно </h3>
 
-The main window consists of two plots.  The large plot displays
-membrane voltage in red and external stimuli (current pulses) in blue.
-The smaller plot displays three quantites as yellow, green, and cyan
-lines.  By default these are the Hodgkin-Huxley variables m, h, and n,
-but other information can be selected, such as currents or
-conductances.  The yellow, green, and cyan pulldown menus select the
-variables to be plotted.
+Главное окно содержит два графика. На большом графике красным цветом показан
+мембранный потенциал, а синим — внешние стимулы (импульсы тока).
+На меньшем графике показаны три величины — жёлтой, зелёной и голубой
+линиями. По умолчанию это переменные Ходжкина–Хаксли m, h и n,
+но можно выбрать и другие величины, например токи или
+проводимости. Жёлтое, зелёное и голубое раскрывающиеся меню выбирают
+переменные для построения.
 		<p>
 
-Click on the purple <b>Stim1</b> or <b>Stim2</b> buttons to inject a
-depolarizing or hyperpolarizing current stimulus.  Click on the
-Membrane, Channels, or Stimuli buttons to view and modify the
-simulation parameters.</p>
-		<p>Radio buttons at the top of the display will allow you to use three different modes: cursor, zoom and pan. In cursor mode, clicking on any of the plot lines causes an elliptical cursor to appear, and the value of the selected variable is displayed in the cursor subpanel in the bottom right corner of the main window. Cursor control buttons move the cursor left or right, either by one timestep or to the next local maximum or minimum of the graph. In zoom mode, left-clicking on a plot will zoom in; right-clicking will bring up more options. Clicking and dragging your cursor in zoom mode will give a zoom box for a more controlled zoom. In pan mode, clicking a dragging on a plot will allow you to pan in any axis direction. </p>
+Нажмите фиолетовую кнопку <b>Стим1</b> или <b>Стим2</b>, чтобы подать
+деполяризующий или гиперполяризующий импульс тока. Кнопки
+«Мембрана», «Каналы» и «Стимулы» открывают окна для просмотра и изменения
+параметров модели.</p>
+		<p>Кнопки-переключатели в верхней части окна позволяют выбрать один из трёх режимов: <b>Курсор</b>, <b>Масштаб</b> и <b>Сдвиг</b>. В режиме курсора щелчок по любой линии графика выводит эллиптический курсор, а значение выбранной переменной отображается на панели курсора в правом нижнем углу главного окна. Кнопки управления курсором перемещают его влево или вправо — на один шаг по времени или к ближайшему локальному максимуму или минимуму графика. В режиме масштаба щелчок левой кнопкой мыши по графику увеличивает его, а щелчок правой кнопкой открывает дополнительные действия. Если в режиме масштаба нажать кнопку мыши и протянуть курсор, появится рамка, позволяющая точнее выбрать увеличиваемую область. В режиме сдвига, нажав кнопку мыши и протянув курсор по графику, можно сдвигать его вдоль любой оси. </p>
 		<p>
 
 </p>
 		<center>
-<img src="images/main.png">
+<img src="images/main.png" style="max-width:100%">
+<br><small><i>Снимок экрана оригинальной (английской) версии.</i></small>
 </center><p></p>
 
-The simulation runs whenever a stimulus is applied or a parameter
-value is changed.  It stops when the membrane voltage appears to have
-reached an asymptote.  If it stops too soon, click the yellow
-<b>Nudge</b> button to nudge the simulation along for a few more time
-steps.  Click <b>Run</b> (green button) to enter continuous run mode,
-and <b>Stop</b> (red button) to leave this mode.<p>
+Моделирование запускается всякий раз, когда подаётся стимул или изменяется
+значение параметра. Оно останавливается, когда мембранный потенциал, по всей видимости,
+достиг асимптоты. Если моделирование остановилось слишком рано, нажмите жёлтую
+кнопку <b>Шаг</b> (в оригинале — Nudge), чтобы продвинуть моделирование ещё на несколько
+шагов по времени. Нажмите <b>Пуск</b> (зелёная кнопка), чтобы перейти в режим непрерывного
+моделирования, и <b>Стоп</b> (красная кнопка), чтобы выйти из него.<p>
 
-The <b>Clear</b> button clears the display and resets the time, but
-does not affect any other simulation parameters.  The <b>Recall</b>
-button resets the Hodgkin-Huxley variables to a previously-stored
-state.  Initially this is the resting state; see the <a href="cursor.html">cursor control</a> page for information on saving
-state for later recall. <b>Zoom in</b> and <b>Zoom out</b> buttons are
-self-explanatory.
+Кнопка <b>Очистить</b> очищает графики и сбрасывает время, но
+не затрагивает остальные параметры модели. Кнопка <b>Вернуть</b>
+возвращает переменные Ходжкина–Хаксли к ранее сохранённому
+состоянию. Изначально это состояние покоя; о том, как сохранить
+состояние, чтобы вернуться к нему позже, см. страницу
+<a href="cursor.html">«Управление курсором»</a>.
 
 </p><blockquote>
-<a href="http://www.cs.cmu.edu/%7Edst/HHsim/cursor.html"><h3>Click here for cursor controls</h3></a>
+<a href="cursor.html"><h3>Управление курсором</h3></a>
 </blockquote>
 <p></p>
 
-The <b>Print</b> button outputs the plots in the main window as a
-Postscript file, suitable for printing or for inclusion in other
-documents.  The <b>Export</b> button saves the plotted curves as a
-table in ASCII format, readable by Microsoft Excel, Matlab (using the
-<code>importdata</code> function), and many other programs.  If the
-cursor is active, only that curve are exported; otherwise all the
-curves are exported.<p>
+Кнопка <b>Печать</b> сохраняет графики главного окна в файл
+PostScript (EPS), пригодный для печати или вставки в другие
+документы. Кнопка <b>Экспорт</b> сохраняет построенные кривые в виде
+таблицы в текстовом формате, который читают Microsoft Excel, Matlab (с помощью
+функции <code>importdata</code>) и многие другие программы. Если
+курсор активен, экспортируется только та кривая, на которой он стоит; иначе
+экспортируются все кривые. Текстовый файл записывается в кодировке UTF-8.<p>
 
-</p><h3> Membrane Window </h3>
+</p><h3> Окно «Мембрана» </h3>
 
-The Membrane window provides for manipulation of internal and external
-ion concentrations, and adjustment of a few membrane parameters.<p>
+Окно «Мембрана» позволяет изменять внутренние (C<sub>вн</sub>) и внешние (C<sub>нар</sub>)
+концентрации ионов и настраивать некоторые параметры мембраны.<p>
 
 </p><center>
-<img src="images/membrane.png">
+<img src="images/membrane.png" style="max-width:100%">
 </center>
 
-<h3> Channels Window </h3>
+<h3> Окно «Каналы» </h3>
 
-The Channels window provides access to parameters for each of the
-active or passive channel types.  Channels can be temporarily disabled
-by clicking the associated toggle to the left of the channel name.<p>
-
-</p><center>
-<img src="images/channels.png">
-</center>
-<p>
-
-For passive channels the only parameter is the conductance, in
-micro-Siemens.  For active channels, namely the fast sodium channel,
-the delayed rectifier, and a user-defined active channel, a Details
-button calls up another window for accessing the channel's
-Hodgkin-Huxley parameters.  Shown below is the window for the fast
-sodium channel.</p><p>
+Окно «Каналы» даёт доступ к параметрам каждого типа
+активных и пассивных каналов. Канал можно временно отключить,
+щёлкнув по соответствующему переключателю слева от названия канала.<p>
 
 </p><center>
-<img src="images/sodium.png">
-</center>
-
-<h3> Stimuli Window </h3>
-
-The Stimuli window controls the parameters for two external stimuli,
-Stim1 and Stim2, each of which consists of either a single current
-pulse or a sequence of two independently-adjustable pulses.<p>
-
-</p><center>
-<img src="images/stimuli.png">
+<img src="images/channels.png" style="max-width:100%">
 </center>
 <p>
 
-
-</p><h3> Drugs Window </h3>
-
-The Drugs window allows application of any of three drugs: TTX, which
-inhibits the sodium current; TEA, which inhibits the potassium
-current; and pronase, which eliminates sodium channel inactivation.
-Any time a drug is being applied, the Drugs button in the main window
-will be yellow instead of the usual gray<p>
+Для пассивных каналов единственный параметр — проводимость в
+микросименсах (мкСм). Для активных каналов — быстрого натриевого канала,
+калиевого канала задержанного выпрямления («Задерж. выпрямитель») и активного канала,
+задаваемого пользователем, — кнопка <b>Параметры</b> открывает ещё одно окно с
+параметрами Ходжкина–Хаксли этого канала. Ниже показано окно быстрого
+натриевого канала.</p><p>
 
 </p><center>
-<img src="images/drugs.png">
+<img src="images/sodium.png" style="max-width:100%">
+</center>
+
+<h3> Окно «Стимулы» </h3>
+
+Окно «Стимулы» задаёт параметры двух внешних стимулов,
+Стим1 и Стим2, каждый из которых представляет собой либо одиночный импульс
+тока, либо последовательность из двух независимо настраиваемых импульсов.<p>
+
+</p><center>
+<img src="images/stimuli.png" style="max-width:100%">
 </center>
 <p>
 
 
-</p><h3> Voltage Clamp Mode </h3>HHsim starts up in &quot;Voltage Reporting&quot; mode. To switch to &quot;Voltage Clamp&quot; mode, use the pulldown menu in the lower right portion of the main screen.<blockquote>
-<a href="http://www.cs.cmu.edu/%7Edst/HHsim/vclamp.html"><h3>Click here for voltage clamp controls</h3></a>
+</p><h3> Окно «Препараты» </h3>
+
+Окно «Препараты» позволяет применить любой из трёх препаратов: TTX (тетродотоксин), который
+подавляет натриевый ток; TEA (тетраэтиламмоний), который подавляет калиевый
+ток; и проназу, которая устраняет инактивацию натриевых каналов.
+Пока применяется какой-либо препарат, кнопка «Препараты» в главном окне
+окрашена в жёлтый цвет вместо обычного серого.<p>
+
+</p><center>
+<img src="images/drugs.png" style="max-width:100%">
+</center>
+<p>
+
+
+</p><h3> Режим фиксации потенциала </h3>HHsim запускается в режиме «Регистрация потенциала». Чтобы перейти в режим «Фиксация потенциала» (voltage clamp), воспользуйтесь раскрывающимся меню в правом нижнем углу главного окна.<blockquote>
+<a href="vclamp.html"><h3>Управление в режиме фиксации потенциала</h3></a>
 </blockquote>
 <p></p>
+
+<a href="index.html">На главную страницу HHsim</a><p/>
 
     <hr>
-This work was supported in part by National Science Foundation grant
-DGE-9987588.  Any opinions, conclusions, or recommendations expressed
-herein are those of the authors and do not necessarily reflect the
-views of the National Science Foundation.
+Эта работа частично поддержана грантом Национального научного фонда США (NSF)
+DGE-9987588. Любые мнения, выводы или рекомендации, изложенные здесь, принадлежат
+авторам и не обязательно отражают точку зрения Национального научного фонда.
 <p>
 
 
     </p><hr>
-    <address><a href="mailto:dst@cs.cmu.edu">Dave Touretzky</a></address>
+    <address><a href="mailto:dst@cs.cmu.edu">Дэйв Турецки</a> (автор оригинала)</address>
 <!-- Created: Tue Jan 14 22:47:47 EST 2003 -->
 <!-- hhmts start -->
-Last modified: Wed Nov  5 01:03:38 EST 2003
+Последнее изменение оригинала: Wed Nov  5 01:03:38 EST 2003
 <!-- hhmts end -->
-  
+
 </body></html>

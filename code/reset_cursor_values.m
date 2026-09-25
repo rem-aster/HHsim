@@ -11,11 +11,11 @@ if line_id <= 2
     line_data = userdata.lines(line_id);
     line_type = line_id;
     if line_id == 1
-        label = 'mV';
-	cursorlabel = 'Memb. Voltage';
+        label = 'мВ';
+	cursorlabel = 'Потенциал мембр.';
     else
-        label = 'nA';
-	cursorlabel = 'Stimulus';
+        label = 'нА';
+	cursorlabel = 'Стимул';
     end
 else
     axes(handles.varplot);
@@ -25,8 +25,8 @@ else
     popupval = get(button_handle,'Value');
     line_type_array = [3 3 3 4 4 5 5 6 3 3 4 5 1];
     line_type = line_type_array(popupval);
-    label_array = ['  ';'  ';'  ';'uA';'uA';'uS';'uS';'uA';'  ';'  ';'uA';'pS';'  '];
-    label = label_array(popupval,1:2);
+    label_array = {'','','','мкА','мкА','мкСм','мкСм','мкА','','','мкА','мкСм',''};
+    label = label_array{popupval};
     popupstrings = get(button_handle,'String');
     cursorlabel = popupstrings{popupval};
 end
@@ -66,7 +66,7 @@ end
 
 set(handles.cursor_text, 'String', [sprintf('%5.3g',y_val) ' ' label], ...
     'backgroundcolor',line_color(line_id,:));
-set(handles.cursor_time_text, 'String', [sprintf('%5.2f',xdata(index)) ' msec']);
+set(handles.cursor_time_text, 'String', [sprintf('%5.2f',xdata(index)) ' мс']);
 set(handles.cursor_label_text, ...
     'ForegroundColor',line_color(line_id,:),'String',cursorlabel)
 

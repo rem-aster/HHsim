@@ -1,4 +1,4 @@
 function run
 
-disp('please type ''hhsim'' instead');
+disp('вместо этого введите ''hhsim''');
 hhsim

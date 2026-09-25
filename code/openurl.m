@@ -1,40 +1,43 @@
 function [ret] = openurl(filename)
+% Open an HTML help file from the HHsim directory in the system browser.
+% Works both from the Matlab source and in the compiled (MATLAB Compiler)
+% version, where the help files are packaged next to the code.
 
-unixbrowsers={'mozilla' 'netscape' 'galeon' 'phoenix'};
-helpurl=['file://' pwd '/' filename];
+helpdir = fileparts(mfilename('fullpath'));
+helpfile = fullfile(helpdir, filename);
+if ~exist(helpfile, 'file') && isdeployed
+  % compiled version: look for the file inside the extracted archive
+  [~, name, ext] = fileparts(filename);
+  found = dir(fullfile(ctfroot, '**', [name ext]));
+  if ~isempty(found)
+    helpfile = fullfile(found(1).folder, found(1).name);
+  end
+end
+if ~exist(helpfile, 'file')
+  helpfile = fullfile(pwd, filename);
+end
+helpurl = ['file:///' strrep(helpfile, '\', '/')];
+helpurl = strrep(helpurl, 'file:////', 'file:///');
 
-if (strncmp(computer,'MAC',3))
-  unix(['osascript -e ''open location "' helpurl '"''']);   
-  ret=0;
-elseif (isunix)
-  found=0;
-  shell = getenv('SHELL');
-  [pathstr, shellname] = fileparts(shell);
-  if isequal(shellname, 'tcsh') | isequal(shellname, 'csh')
-    shellarg ='>& /dev/null';
-  elseif isequal(shellname,'sh') | isequal(shellname, 'ksh') | isequal(shellname, 'bash')
-    shellarg ='> /dev/null 2>&1';
+ret = 0;
+try
+  if ispc
+    winopen(helpfile);
+  elseif ismac
+    ret = system(['open "' helpfile '"']);
   else
-    shellarg ='';
+    ret = system(['xdg-open "' helpfile '" > /dev/null 2>&1 &']);
   end
-
-  for i=1:size(unixbrowsers,2)
-    [stat]=unix(['which ' unixbrowsers{i} ' ' shellarg]);
-    if (stat==0)
-      found=i;
-      break;
-    end
-  end
-
-  if (found)
-    ret=unix([unixbrowsers{found} ' ' helpurl ' ' shellarg ' & ']);
-  else
-    ret=-1;
-  end
-elseif (ispc)
-  dos('start help/guide.html');
-  ret=0;
-else
-  ret=-3; 
+catch
+  ret = -1;
 end
 
+if ret ~= 0
+  % fallback: let Matlab pick a browser
+  try
+    ret = web(helpurl, '-browser');
+  catch
+    ret = -3;
+    warndlg(['Не удалось открыть руководство: ' helpfile], 'HHsim');
+  end
+end

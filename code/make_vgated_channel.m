@@ -7,8 +7,8 @@ global vars handles
    
 %%% Make the buttons
 
-  buttonwidth = 20; buttonheight = 20; xtinc = 150;
-  button2width = 80;
+  buttonwidth = 20; buttonheight = 20; xtinc = 180;
+  button2width = 90;
 
 h = uicontrol(handles.chanwindow, 'Style','CheckBox','Fontsize',8, ...
 	  'Position',[xi yi buttonwidth buttonheight],...
@@ -26,7 +26,7 @@ make_valtext('',xi,yi,'%s',descr);
 
 uicontrol(handles.chanwindow,'Style','PushButton','Fontsize',10, ...
 	  'Position',[xi+xtinc yi button2width buttonheight], ...
-	  'String','Details', ...
+	  'String','Параметры', ...
 	  'CallBack',['toggle_winvis(''' varname ''')']);
 
 %%% Make channel gate params window
@@ -51,7 +51,7 @@ yinit = height -20; yi = yinit; yinc = -25;
 text(100,yi,descr,'FontSize',20,'Color',[0.8 0.8 0.2])
 yi = yi - 50;
 
-make_valtext('',xi+xinc,yi,'%s','Ion');
+make_valtext('',xi+xinc,yi,'%s','Ион');
 h = uicontrol('Style','Popup','Position',[xi+xinc+40 yi 70 20], ...
 	  'String',{'Na+','K+','Cl-','--'},'Value',ion, ...
           'UserData',ion, ...
@@ -59,7 +59,7 @@ h = uicontrol('Style','Popup','Position',[xi+xinc+40 yi 70 20], ...
 	  'CallBack',['vars.' varname '.ion = get(gcbo,''Value'');']);
 handles.(varname).ion = h;
 
-make_valtext('',xi+xtinc+xinc,yi,'%s','g_{max} (\mu{}S)');
+make_valtext('',xi+xtinc+xinc,yi,'%s','g_{max} (мкСм)');
 h = make_valbox({varname 'gmax'},xi+xtinc*2,yi,gmax*1e6,0,200,1e-6, ...
 		'', '%4.1f', '+', 1);
 handles.(varname).gmax = h;
@@ -88,9 +88,9 @@ channel.gate2 = gate2;
 
 vars.(varname) = channel;
 
-uicontrol('Style','Pushbutton','String','Reset', ...
+uicontrol('Style','Pushbutton','String','Сброс', ...
     'Position',[1 1 40 20], 'CallBack', ['reset_channel(''' varname ''')']);
 
-uicontrol('Style','PushButton','Position',[51 1 40 20],'String','Hide', ...
+uicontrol('Style','PushButton','Position',[51 1 40 20],'String','Скрыть', ...
 	'Callback','set_winvis(gcf,0)')
 

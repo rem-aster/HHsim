@@ -10,15 +10,15 @@ if line_id <= vars.vc_maxc
     userdata = get(handles.vc_mainplot,'userdata');
     line_data = userdata.lines(line_id);
     line_type = 7;
-    label = 'A';
-    cursorlabel = 'Memb. Current';
+    label = 'А';
+    cursorlabel = 'Ток мембраны';
 else
     axes(handles.vc_vplot);
     userdata = get(handles.vc_vplot,'userdata');
     line_data = userdata.lines(line_id - vars.vc_maxc);
     line_type = 1;
-    label = 'mV';
-    cursorlabel = 'Set Voltage';
+    label = 'мВ';
+    cursorlabel = 'Заданный потенциал';
 end
 
 xdata = get(line_data, 'Xdata');
@@ -66,7 +66,7 @@ else
       'backgroundcolor',line_color(line_id,:));
 end
 
-set(handles.cursor_time_text, 'String', [sprintf('%5.2f',xdata(index)) ' msec']);
+set(handles.cursor_time_text, 'String', [sprintf('%5.2f',xdata(index)) ' мс']);
 set(handles.cursor_label_text, ...
     'ForegroundColor',line_color(line_id,:),'String',cursorlabel)
 

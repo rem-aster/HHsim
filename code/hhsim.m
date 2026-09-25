@@ -1,11 +1,11 @@
 function hhsim
 
-%HHSIM HHsim Hodgkin-Huxley simulator
-%   hhsim  starts the simulator
+%HHSIM HHsim - симулятор Ходжкина-Хаксли (русская версия)
+%   hhsim  запускает симулятор
 % 
-%   Click on the purple Stim1 or Stim2 buttons to inject a depolarizing or
-%   hyperpolarizing current stimulus.  Click on the Membrane, Channels,
-%   Stimuli or Drugs buttons to view and modify the simulation parameters.
+%   Нажмите фиолетовые кнопки Стим1 или Стим2, чтобы подать деполяризующий
+%   или гиперполяризующий импульс тока.  Кнопки Мембрана, Каналы, Стимулы
+%   и Препараты открывают окна для просмотра и изменения параметров модели.
 
 %#function begin_stimulus
 %#function call_incrbutton
@@ -51,7 +51,7 @@ function hhsim
 %#function print_data
 %#function recalc_ECl
 %#function recalc_EK
-%#function recalc_Eset(h,'ActionPostCallback','disp(''woof!'')')Na
+%#function recalc_ENa
 %#function recalc_Vr
 %#function recalc_gate_graph
 %#function recall_state
@@ -110,15 +110,38 @@ function hhsim
 %#function vc_varselect
 %#function winloc_load
 %#function winloc_save
+% functions called from string callbacks (needed by MATLAB Compiler)
+%#function blackBackground
+%#function cursor_off
+%#function flush_cache
+%#function new_zoom_in
+%#function new_zoom_out
+%#function radiobuttons
+%#function recalc_Rm
+%#function recalc_Rm_Vr
+%#function resize_main_axis
+%#function slider_set
+%#function slider_val
+%#function vc_run
+%#function vc_slider_set
+%#function vc_slider_val
+%#function vc_stabilize
+%#function vc_vertslider_extend
+%#function vc_vertslider_pos
+%#function vc_vertslider_set
+%#function vc_vertslider_val
+%#function vc_zoom_hor
+%#function whiteBackground
+%#function zoom_update
 
 eval('global vars handles')
 
 global vars handles
 
-fprintf('HHsim message window\n');
-fprintf('loading ... ');
+fprintf('Окно сообщений HHsim\n');
+fprintf('загрузка ... ');
 
-vars.code_version = '3.6';
+vars.code_version = '3.7-ru';
 
 vars.vclampmode=0;
 vars.time = 0;
@@ -163,8 +186,8 @@ setup_vclamp
 %disp('setting main window')
 setup_main
 %disp(' ')
-disp('Ready.  Press the purple Stim1 or Stim2 buttons to stimulate the cell.')
-disp('Click on the lines in the graph to view specific values.')
+disp('Готово.  Нажмите фиолетовую кнопку Стим1 или Стим2, чтобы стимулировать клетку.')
+disp('Щёлкните по линии на графике, чтобы увидеть значение в этой точке.')
 
 handles.zoom_obj = zoom(9);
 set(handles.zoom_obj, 'ActionPostCallback', 'slider_val')

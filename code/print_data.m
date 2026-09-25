@@ -6,7 +6,7 @@ global vars
 %  printdlg;
 %catch
 
- [filename, pathname] = uiputfile('*.eps','Print to File',vars.write_path);
+ [filename, pathname] = uiputfile('*.eps','Печать в файл',vars.write_path);
 
  if ~(isequal(filename,0) | isequal(pathname,0))
    vars.write_path=pathname;

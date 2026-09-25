@@ -9,23 +9,23 @@ clf
 width = 500; height = 550;
 pos = get(gcf,'Position');
 set(gcf,'Units','pixels','Position',[460 180 width height],'Visible','off')
-set(gcf,'Name','Drugs')
+set(gcf,'Name','Препараты')
 set(gcf, 'CloseRequestFcn', 'callbacks(20)');
 blackBackground(gcf)
 cla, axis off
 set(gca,'Units','pixels','Position',[0 0 width height])
 axis([1 width 1 height])
 
-text(215,530,'Drugs','FontSize',20,'Color',vars.drugcolor)
+text(185,530,'Препараты','FontSize',20,'Color',vars.drugcolor)
 buttonwidth = 20; buttonheight = 20;
 
-text(130,170,'% inhibition','FontSize',10)
-text(130,350,'% inhibition','FontSize',10)
+text(115,170,'% ингибирования','FontSize',10)
+text(115,350,'% ингибирования','FontSize',10)
 
-uicontrol('Style','PushButton','Position',[1 1 40 20],'String','Reset', ...
+uicontrol('Style','PushButton','Position',[1 1 40 20],'String','Сброс', ...
 	'Callback','callbacks(19)')
 
-uicontrol('Style','PushButton','Position',[51 1 40 20],'String','Hide', ...
+uicontrol('Style','PushButton','Position',[51 1 40 20],'String','Скрыть', ...
 	'Callback','callbacks(20)')
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -33,22 +33,22 @@ uicontrol('Style','PushButton','Position',[51 1 40 20],'String','Hide', ...
 xpos = 15;
 ypos = 350;
 
-make_drug(1,0,330,'TTX','tetrodotoxin','inhibits Na current', ...
-          'nM',0.1,100,10);
-make_drug(2,0,150,'TEA','tetraethylammonium','inhibits K current', ...
-          'mM',0.1,100,10);
+make_drug(1,0,330,'TTX','тетродотоксин','подавляет Na-ток', ...
+          'нМ',0.1,100,10);
+make_drug(2,0,150,'TEA','тетраэтиламмоний','подавляет K-ток', ...
+          'мМ',0.1,100,10);
 
 handles.drug3.selbutton = ...
   uicontrol('Style','CheckBox','Position',[210 70 110 20], ...
-    'Value',0,'String','Pronase','FontSize',10, ...
-    'Tooltip','Toggle pronase use','BackgroundColor',0.7*[1 1 1], ...
+    'Value',0,'String','Проназа','FontSize',10, ...
+    'Tooltip','Включить/выключить проназу','BackgroundColor',0.7*[1 1 1], ...
     'CallBack','set_pronase');
 handles.drug3.axis = axes('Units','pixel', ...
              'Position',[65, 40, 400 80]);
 subplot(handles.drug3.axis)
 set(gca,'xtick',[],'ytick',[])
 box on
-title('Pronase - eliminates Na inactivation', ...
+title('Проназа - устраняет инактивацию Na-каналов', ...
       'Color',vars.drugcolor,'FontSize',11);
 
 set(handles.drug1.axis,'ButtonDownFcn','graph_select(1);');

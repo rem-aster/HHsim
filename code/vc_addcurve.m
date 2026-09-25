@@ -31,7 +31,7 @@ set(handles.vc_vplot,'UserData',u);
 
 if (vars.vc_numcurves>=vars.vc_maxc)
   vars.curve_aborted=1;
-  mb=msgbox(['Cannot display more than ' num2str(vars.vc_maxc) ' curves in voltage clamp. Hit the Clear button, or delete some curves.'], 'Warning');
+  mb=msgbox(['В режиме фиксации потенциала нельзя показать больше ' num2str(vars.vc_maxc) ' кривых. Нажмите «Очистить» или удалите часть кривых.'], 'Предупреждение');
   whiteBackground(mb);
   set(mb,'Color',[0.9 0.9 0.9]);
 else 

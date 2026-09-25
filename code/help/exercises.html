@@ -1,429 +1,426 @@
-<!-- X-URL: http://www-2.cs.cmu.edu/~dst/HHsim/exercises.html -->
-<!-- Date: Wed, 15 Jan 2003 16:00:19 GMT -->
-<BASE HREF="http://www-2.cs.cmu.edu/~dst/HHsim/exercises.html">
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<html lang="ru">
   <head>
-    <title>Sample HHSim Exercises</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Примеры упражнений с HHsim</title>
   </head>
 
   <body bgcolor="#ccffff">
-    <center><h1>Sample HHSim Exercises</h1></center>
+    <center><h1>Примеры упражнений с HHsim</h1></center>
+
+<p><i>Названия кнопок и пунктов меню приведены так, как они выглядят в русской версии программы.
+Примечания переводчика отмечены «Прим. перев.».</i></p>
 
 <table border=0>
 
 <tr><td ALIGN=RIGHT>I.</td>
-<td><a href="#part1">Equilibrium Potential</a></td></tr>
+<td><a href="#part1">Равновесный потенциал</a></td></tr>
 
 <tr><td ALIGN=RIGHT>II.</td>
-<td><a href="#part2">Membrane Potential</a></td></tr>
+<td><a href="#part2">Мембранный потенциал</a></td></tr>
 
 <tr><td ALIGN=RIGHT>III.</td>
-<td><a href="#part3">The Action Potential</a></td></tr>
+<td><a href="#part3">Потенциал действия</a></td></tr>
 
 <tr><td ALIGN=RIGHT>IV.</td>
-<td><a href="#part4">The Fast Sodium Channel</a></td></tr>
+<td><a href="#part4">Быстрый натриевый канал</a></td></tr>
 
 <tr><td ALIGN=RIGHT>V.</td>
-<td><a href="#part5">The Delayed Rectifier</a></td></tr>
+<td><a href="#part5">Калиевый канал задержанного выпрямления</a></td></tr>
 
 <tr><td ALIGN=RIGHT>VI.</td>
-<td><a href="#part6">Voltage-Gated Channel Parameters</a></td></tr>
+<td><a href="#part6">Параметры потенциал-зависимых каналов</a></td></tr>
 </table>
-</p>
 
-<a name=part1>
-<h2>Part I:  Equilibrium Potential</h2>
+<a name=part1></a>
+<h2>Часть I. Равновесный потенциал</h2>
 
-We will first explore the equilibrium potential of a cell with a
-single channel type.  Click on the Channels button in the main window
-to call up the Channels window.  In the Channels window, turn off the
-all the channels <i>except</i> the first one (passive sodium), by
-clicking on their respective buttons.  The buttons should change color
-to gray when you turn them off.  Notice that the resting potential Vr
-displayed in the Membrane window is now equal to the reversal
-potential for sodium, +52.4 mV.  A mouse click on the red line will
-show you the exact value of Vm.  Vm may not be exactly equal to Vr,
-but clicking the yellow <b>Nudge</b> button a few times will nudge
-things along until the voltage reaches the theoretical asymptote.  Or
-you can click <b>Run</b>, wait a while, and then click
-<b>Stop</b>.</p>
+<p>Сначала исследуем равновесный потенциал клетки с каналами
+одного-единственного типа. Нажмите кнопку «Каналы» в главном окне,
+чтобы открыть окно «Каналы». В окне «Каналы» отключите все каналы,
+<i>кроме</i> первого (пассивного натриевого), щёлкая по их
+переключателям. При отключении переключатели должны становиться
+серыми. Обратите внимание, что потенциал покоя V<sub>r</sub>, показанный
+в окне «Мембрана», теперь равен потенциалу реверсии
+натрия, +52,4 мВ. Щелчок мышью по красной линии покажет точное значение V<sub>m</sub>.
+V<sub>m</sub> может не совпадать в точности с V<sub>r</sub>,
+но если несколько раз нажать жёлтую кнопку <b>Шаг</b>, моделирование
+продвинется, пока потенциал не достигнет теоретической асимптоты. Можно
+также нажать <b>Пуск</b>, немного подождать, а затем нажать
+<b>Стоп</b>.</p>
 
 <ul>
 <li>
-Question 1.  Calculate the effect of halving the external sodium
-concentration.  Remember, we're assuming that only sodium channels are
-present.  You will first need to calculate RT/zF at 6.3<sup>o</sup>,
-which you can do from the information provided in the Membrane window.
-Then, confirm your answer in the simulator by changing the
-concentration in the Membrane window and looking at the new value of
-passive Vr.  (You can type new values into any of the boxes in the
-Membrane window, or use the <b>&lt;</b> or <b>&gt;</b> buttons to
-change the values.)</p>
+<p>Вопрос 1. Рассчитайте, что произойдёт, если вдвое уменьшить внешнюю концентрацию
+натрия. Помните, что мы считаем, что в мембране есть только натриевые каналы.
+Сначала вам понадобится вычислить RT/zF при 6,3&nbsp;°C,
+что можно сделать по данным из окна «Мембрана».
+Затем проверьте ответ в симуляторе: измените
+концентрацию в окне «Мембрана» и посмотрите на новое значение
+пассивного V<sub>r</sub>. (В любое из полей окна «Мембрана» можно ввести
+новое значение с клавиатуры или изменить его кнопками <b>&lt;</b> и <b>&gt;</b>.)</p>
 
-<li> Question 2.  Calculate the [Na+] external concentration required to
-achieve Vr = E<sub>Na</sub>= +55.5 mV.  Confirm your answer using the
-simulator.</p>
+<li><p>Вопрос 2. Рассчитайте внешнюю концентрацию [Na<sup>+</sup>], необходимую,
+чтобы получить V<sub>r</sub> = E<sub>Na</sub> = +55,5 мВ. Проверьте ответ с помощью
+симулятора.</p>
 
 </ul>
 
-Hit the <b>Reset</b> button in the Membrane window to restore all
-parameters to their initial values.</p>
+<p>Нажмите кнопку <b>Сброс</b> в окне «Мембрана», чтобы вернуть всем
+параметрам исходные значения.</p>
 
 <ul><li>
-Question 3.  Suppose we double the temperature from 6.3<sup>o</sup> C to
-12.6<sup>o</sup> C.  What is the new value of Vr?  Explain why Vr doesn't
-double.
+<p>Вопрос 3. Предположим, мы удвоили температуру с 6,3&nbsp;°C до
+12,6&nbsp;°C. Каково новое значение V<sub>r</sub>? Объясните, почему V<sub>r</sub> не
+удваивается.</p>
 </ul>
 
 
-<a name=part2>
-<h2> Part II: Membrane Potential</h2>
+<a name=part2></a>
+<h2>Часть II. Мембранный потенциал</h2>
 
-In exercise we will look at the membrane potential with only passive
-channels (no voltage gated sodium or potassium channels.)<p/>
+<p>В этом упражнении мы рассмотрим мембранный потенциал при наличии только пассивных
+каналов (без потенциал-зависимых натриевых и калиевых каналов).</p>
 
-First, <b>reset the simulator</b>.  If you are running from source code using
-Matlab, type "hhsim" again in the Matlab Command Window.  (Don't hit the
-green <b>Run</b> button, and make sure the simulator is stopped before
-you type "hhsim" in the Command Window).  If you're instead running a
-stand-alone executable version of the simulator, just kill the
-application and start it again.  </p>
+<p>Сначала <b>перезапустите симулятор</b>. Если вы запускаете его из исходного кода в
+Matlab, снова введите «hhsim» в командном окне Matlab (Command Window). (Не нажимайте
+зелёную кнопку <b>Пуск</b> и убедитесь, что моделирование остановлено, прежде чем
+вводить «hhsim» в командном окне.) Если же вы пользуетесь
+автономной исполняемой версией симулятора, просто закройте
+приложение и запустите его снова.</p>
 
-Turn off the yellow and green plots in the main window by selecting
-"-" in their respective pulldown menus.  Set the cyan (light blue)
-plot to "I_leak", the leakage current.  I_leak is equal to the flow of
-current through the passive channels.  By looking above and below the
-cyan pulldown menu, you will see that the scale of the I_leak plot
-ranges from -0.05 to 0.05 pico-Amp.  Display the Membrane and Channels
-windows as well.</p>
+<p>Отключите жёлтый и зелёный графики в главном окне, выбрав
+«пусто» в соответствующих раскрывающихся меню. Для голубого
+графика выберите «I_утечки» — ток утечки. I_утечки равен
+току через пассивные каналы. Посмотрев на подписи над и под
+голубым меню, вы увидите, что шкала графика I_утечки
+простирается от −0,05 до 0,05 пикоампера. <i>(Прим. перев.: в интерфейсе программы
+для этой шкалы указана единица мкА.)</i> Откройте также окна «Мембрана» и
+«Каналы».</p>
 
-In the Channels window, turn off the two voltage gated channels (pink
-buttons) so that only the three passive channels (green buttons) are
-functional.  Note that the membrane voltage (red line) rises from its
-previous level of roughly -62 mv to a new level of around -48 mv.  The
-simulator stops when the membrane voltage is close to asymptote.  To
-get an exact resting value, click the yellow <b>Nudge</b> button a few
-times until the value displayed for Vm stops changing.</p>
+<p>В окне «Каналы» отключите два потенциал-зависимых канала (розовые
+переключатели), чтобы работали только три пассивных канала (зелёные
+переключатели). Обратите внимание, что мембранный потенциал (красная линия) поднимается с
+прежнего уровня около −62 мВ до нового уровня около −48 мВ.
+Моделирование останавливается, когда мембранный потенциал близок к асимптоте. Чтобы
+получить точное значение покоя, несколько раз нажмите жёлтую кнопку <b>Шаг</b>,
+пока показываемое значение V<sub>m</sub> не перестанет меняться.</p>
 
-The rise in Vm shows that at the normal resting potential, some
-voltage-gated channels as well as leak channels were open.  When the
-voltage-gated channels are disabled, the only open channels are the
-leak channels, and resting membrane voltage rises.  Since membrane
-current must be 0 at Vrest, the leak current (blue line) is zero.</p>
+<p>Рост V<sub>m</sub> показывает, что при нормальном потенциале покоя, кроме
+каналов утечки, были открыты и некоторые потенциал-зависимые каналы. Когда
+потенциал-зависимые каналы отключены, открытыми остаются только
+каналы утечки, и потенциал покоя мембраны повышается. Поскольку мембранный
+ток при V<sub>покоя</sub> должен быть равен нулю, ток утечки (голубая линия) равен нулю.</p>
 
 <ul><li>
-Question 1. Write down the parallel conductance equation for the
-resting potential as a function of equilibrium potentials and
-conductances.  Given the equilibrium potentials shown in the Membrane
-window and the conductances shown in the Channels window, calculate
-the resting potential Vr.</p>
+<p>Вопрос 1. Запишите уравнение параллельных проводимостей для
+потенциала покоя как функции равновесных потенциалов и
+проводимостей. По равновесным потенциалам, показанным в окне «Мембрана»,
+и проводимостям, показанным в окне «Каналы», рассчитайте
+потенциал покоя V<sub>r</sub>.</p>
 
-<li> Question 2. You can see from the Channels window that gK is 0.070
-micro-Siemens.  Calculate to two significant digits the value to which
-gK would have to be reduced in order to make Vr be -45 mV.  Verify
-your answer by changing the value of gK in the simulator and seeing
-how the value of passive Vr in the Membrane window changes.</p>
+<li><p>Вопрос 2. В окне «Каналы» видно, что g<sub>K</sub> равна 0,070
+микросименса. Рассчитайте с точностью до двух значащих цифр, до какого значения
+нужно уменьшить g<sub>K</sub>, чтобы V<sub>r</sub> стал равен −45 мВ. Проверьте
+ответ, изменив значение g<sub>K</sub> в симуляторе и посмотрев,
+как меняется значение пассивного V<sub>r</sub> в окне «Мембрана».</p>
 
-<li> Question 3. We can also manipulate the resting potential Vr by
-changing the ion concentrations.  Obviously it is easier to change the
-concentrations outside the cell than inside.  Suppose we want to raise
-the cell's resting potential to -39 mv, while maintaining a constant
-osmolarity and not disturbing the charge balance.  What ion
-concentrations should we change, and what should their new values be?
-Use the simulator to find the answer empirically.</p>
+<li><p>Вопрос 3. Потенциалом покоя V<sub>r</sub> можно управлять и
+изменяя концентрации ионов. Очевидно, что изменить
+концентрации снаружи клетки проще, чем внутри. Предположим, мы хотим поднять
+потенциал покоя клетки до −39 мВ, сохранив постоянную
+осмолярность и не нарушив баланс зарядов. Концентрации каких ионов
+нужно изменить и какими должны стать их новые значения?
+Найдите ответ опытным путём с помощью симулятора.</p>
 </ul>
 
-<a name=part3>
-<h2>Part III: The Action Potential</h2>
+<a name=part3></a>
+<h2>Часть III. Потенциал действия</h2>
 
-Reset the simulator again (see instructions in Part II).  Click on the
-purple <b>Stim1</b> button in the main window to stimulate the cell
-and generate a spike.  You can see the stimulus plotted as a purplish
-line, while the spike is visible as the membrane voltage plotted as a
-red line.  Click on the <b>Stim2</b> button to apply a hyperpolarizing
-pulse to the cell.  Notice that this also results in a spike.</p>
+<p>Снова перезапустите симулятор (см. указания в части II). Нажмите
+фиолетовую кнопку <b>Стим1</b> в главном окне, чтобы стимулировать клетку
+и вызвать спайк. Стимул отображается фиолетовой
+линией, а спайк виден на графике мембранного потенциала — красной
+линии. Нажмите кнопку <b>Стим2</b>, чтобы подать на клетку гиперполяризующий
+импульс. Обратите внимание, что это тоже вызывает спайк.</p>
 
-<ul><li>Question 1.  Why does hyperpolarization cause a spike?</p></ul>
+<ul><li><p>Вопрос 1. Почему гиперполяризация вызывает спайк?</p></ul>
 
-Click on the Stimuli button in the main window to call up the Stimulus
-Parameters window.  Notice that button <b>Stim1</b> is set up to
-provide a 1 millisecond stimulus at +10 nano-amps.  Using the slider
-controls, you can add a second pulse to <b>Stim1</b>.  Set up a second
-10 nA pulse 5 msec after the first.  (Note: clicking on the slider
-changes the value by 5.  Clicking on the arrowheads changes the value
-by 1.  You can also type values directly into the box next to each
-slider.  Moving the mouse over a slider or text box dispays some
-pop-up text explaining its function.)</p>
+<p>Нажмите кнопку «Стимулы» в главном окне, чтобы открыть окно параметров
+стимулов. Обратите внимание, что кнопка <b>Стим1</b> настроена на
+подачу стимула длительностью 1 мс силой +10 наноампер. С помощью
+ползунков к <b>Стим1</b> можно добавить второй импульс. Задайте второй
+импульс 10 нА через 5 мс после первого. (Примечание: щелчок по ползунку
+меняет значение на 5, а щелчок по стрелкам — на 1.
+Значения можно также вводить прямо в поле рядом с каждым
+ползунком. Если навести указатель мыши на ползунок или поле, появится
+всплывающая подсказка с описанием его назначения.)</p>
 
-Notice that two pulses spaced 5 msec apart do not cause two spikes.</p>
+<p>Обратите внимание, что два импульса с интервалом 5 мс не вызывают двух спайков.</p>
 
 <ul><li>
-Question 2.  Why doesn't this second pulse cause a second spike?
-Phrase your answer in terms of gates and voltages.</p>
+<p>Вопрос 2. Почему второй импульс не вызывает второго спайка?
+Сформулируйте ответ в терминах ворот и потенциалов.</p>
 
 <li>
-Question 3.  How much time must elapse between the end of the first
-pulse and the beginning of the second in order for the second pulse to
-cause a second spike?  (Use the simulator to experiment.)</p>
+<p>Вопрос 3. Сколько времени должно пройти между концом первого
+импульса и началом второго, чтобы второй импульс
+вызвал второй спайк? (Проведите эксперименты на симуляторе.)</p>
 </ul>
 
-A negative pulse occuring soon after a positive pulse can prevent a
-spike from occurring.  Set up the <b>Stim1</b> parameters to provide a 5 nA
-pulse folowed 1 msec later by a -5 nA pulse.  You'll see that the 1 ms
-interval is too long to prevent the spike.  Shorter intervals can be
-obtained by typing a fractional value like 0.9 into the text for the
-middle horizontal slider.</p>
+<p>Отрицательный импульс, поданный вскоре после положительного, может предотвратить
+возникновение спайка. Настройте параметры <b>Стим1</b> так, чтобы подавался импульс 5 нА,
+а через 1 мс после него — импульс −5 нА. Вы увидите, что интервал в 1 мс
+слишком велик, чтобы предотвратить спайк. Более короткие интервалы можно
+задать, введя дробное значение, например 0.9, в текстовое поле среднего
+горизонтального ползунка.</p>
 
 <ul><li>
-Question 4.  To the nearest 10th of a millisecond, what is the
-longest delay after a 1 msec 5 nA positive pulse that a 1 msec -5 nA
-pulse can block a spike?</p>
+<p>Вопрос 4. С точностью до десятой доли миллисекунды: какова
+наибольшая задержка после положительного импульса 5 нА длительностью 1 мс, при которой импульс −5 нА
+длительностью 1 мс ещё может заблокировать спайк?</p>
 </ul>
 
 
-<a name=part4>
-<h2>Part IV: The Fast Sodium Channel</h2>
+<a name=part4></a>
+<h2>Часть IV. Быстрый натриевый канал</h2>
 
-Reset the simulator again.  Press the <b>Stim1</b> button to stimulate
-the cell and generate a spike.  The yellow, green, and cyan (light
-blue) lines in the upper plot display the Hodgkin-Huxley variables m,
-h, and n, respectively.  The variables take on values between 0 and 1.
-Recall that the fast sodium channel conductance is proportional to
-m<sup>3</sup>h, and potassium channel activity is proportional to
+<p>Снова перезапустите симулятор. Нажмите кнопку <b>Стим1</b>, чтобы стимулировать
+клетку и вызвать спайк. Жёлтая, зелёная и голубая
+линии на нижнем графике показывают переменные Ходжкина–Хаксли m,
+h и n соответственно. Эти переменные принимают значения от 0 до 1.
+Напомним, что проводимость быстрого натриевого канала пропорциональна
+m<sup>3</sup>h, а активность калиевого канала пропорциональна
 n<sup>4</sup>.</p>
 
-In this exercise we will focus on just the sodium channel, which
-consists of an activation gate and an inactivation gate.  Both these
-gates must be open in order for current to flow.  The m<sup>3</sup>
-term describes the state of the activation gate, and the h term
-describes the state of the inactivation gate.  The closer these values
-are to 1, the more "open" the gate is.</p>
+<p>В этом упражнении мы сосредоточимся только на натриевом канале, который
+имеет активационные и инактивационные ворота. Чтобы через канал шёл ток,
+открыты должны быть и те и другие. Член m<sup>3</sup>
+описывает состояние активационных ворот, а член h —
+состояние инактивационных ворот. Чем ближе эти значения
+к 1, тем «открытее» ворота.</p>
 
-Using the cyan pop-up menu, set the cyan plot to display g_Na, the
-sodium conductance, which is proportional to m<sup>3</sup>h.  The
-numbers above and below the yellow, green, and cyan windows represent
-the y-axis values of the uppermost and lowest dashed lines,
-respectively, in the upper plot.  The range for the cyan plot is now 0
-to 30 pico-Siemens.  Click on <b>Zoom In</b> to get a better view, and use
-the scroll bar to position the plot as necessary.</p>
+<p>С помощью голубого раскрывающегося меню выберите для голубого графика g_Na —
+натриевую проводимость, пропорциональную m<sup>3</sup>h. Числа
+над и под жёлтым, зелёным и голубым меню означают значения по оси y
+верхней и нижней пунктирных линий графика
+соответственно. Шкала голубого графика теперь — от 0
+до 30 пикосименс. <i>(Прим. перев.: в интерфейсе программы для этой шкалы указана единица мкСм.)</i>
+Для лучшего обзора увеличьте график (режим <b>Масштаб</b>; в оригинале — кнопка Zoom In)
+и при необходимости сдвиньте его полосой прокрутки.</p>
 
-As you can see, the inactivation gate variable h (green line) has a
-resting value of around 0.5, so it's normally part-way open.  But the
-activation gate variable m (yellow line) normally rests close to 0.
-This is why the total sodium conductance (cyan line) is close to zero
-pico-Siemens at rest.</p>
+<p>Как видно, переменная инактивационных ворот h (зелёная линия) имеет
+значение покоя около 0,5, т. е. эти ворота в норме частично открыты. А
+переменная активационных ворот m (жёлтая линия) в покое близка к 0.
+Именно поэтому общая натриевая проводимость (голубая линия) в покое
+близка к нулю.</p>
 
-When a stimulus depolarizes the cell slightly, the activation gate
-opens (yellow line "m" rises), the sodium conductance (cyan line)
-increases, and the cell depolarizes further (red line Vm rises).
-However, as the membrane voltage increases, the inactivation gate
-begins to close (green line "h" decreases to zero), and this causes
-the overall conductance (cyan line, proportional to m<sup>3</sup>h) to
-drop even though the yellow line remains high (activation gate remains
-open) for quite a while.</p>
+<p>Когда стимул немного деполяризует клетку, активационные ворота
+открываются (жёлтая линия «m» поднимается), натриевая проводимость (голубая линия)
+растёт, и клетка деполяризуется ещё сильнее (красная линия V<sub>m</sub> поднимается).
+Однако по мере роста мембранного потенциала инактивационные ворота
+начинают закрываться (зелёная линия «h» падает до нуля), и из-за этого
+общая проводимость (голубая линия, пропорциональная m<sup>3</sup>h)
+снижается, хотя жёлтая линия ещё довольно долго остаётся высокой
+(активационные ворота остаются открытыми).</p>
 
-What eventually causes the yellow line to drop is the repolarization
-of membrane potential (indicated by the red line dropping) as a result
-of opening of voltage dependent potassium channels.  Without the
-potassium channels, the cell would remain depolarized.  To demonstrate
-this, we will do an experiment.</p>
+<p>В конце концов жёлтая линия опускается из-за реполяризации
+мембраны (красная линия идёт вниз), вызванной
+открытием потенциал-зависимых калиевых каналов. Без
+калиевых каналов клетка осталась бы деполяризованной. Чтобы
+показать это, проведём эксперимент.</p>
 
-Call up the Channels window and disable the Delayed Rectifier
-(potassium) channel.  There is normally some leakage current through
-this channel when the cell is at rest; removing it triggers a spike.
-The cell depolarizes but cannot repolarize, because now there is no
-active potassium current.  The membrane voltage thus remains high, and
-the yellow line stays high.</p>
+<p>Откройте окно «Каналы» и отключите калиевый канал задержанного выпрямления
+(«Задерж. выпрямитель»). Когда клетка находится в покое, через этот канал обычно идёт
+небольшой ток утечки; его устранение запускает спайк.
+Клетка деполяризуется, но не может реполяризоваться, потому что теперь нет
+активного калиевого тока. Поэтому мембранный потенциал остаётся высоким, и
+жёлтая линия тоже остаётся высокой.</p>
 
-<ul><li> Question 1.  looking at the simulator output, at what
-potential does the cell settle after the spike has subsided, i.e.,
-what is the new resting value of Vm?  Click on the red line to measure
-the value.</p></ul>
+<ul><li><p>Вопрос 1. Судя по результатам моделирования, на каком
+потенциале устанавливается клетка после окончания спайка, т. е.
+каково новое значение покоя V<sub>m</sub>? Щёлкните по красной линии, чтобы измерить
+его.</p></ul>
 
-The spike peak is around +50 mV.  With no active potassium channel
-conductance, the cell does not fully repolarize, but the membrane
-voltage does decline some from the peak value.  Notice that if Vm is
-perturbed from its new resting value by a depolarizing or
-hyperpolarizing stimulus (try the <b>Stim1</b> and <b>Stim2</b>
-buttons) it returns to the new resting value.</p>
+<p>Пик спайка — около +50 мВ. Без проводимости активного калиевого канала
+клетка не реполяризуется полностью, но мембранный
+потенциал всё же несколько снижается от пикового значения. Обратите внимание: если V<sub>m</sub>
+сместить от нового значения покоя деполяризующим или
+гиперполяризующим стимулом (попробуйте кнопки <b>Стим1</b> и <b>Стим2</b>),
+он возвращается к новому значению покоя.</p>
 
-The new value of Vm is determined by the conductances of two channel
-types: the leak channels (which have conductance to Na, K, and Cl),
-and the (not quite fully closed) fast voltage dependent sodium
-channels.  Although it may appear that in this state h = 0 and hence
-g_Na = 0, they are actually slightly positive.  Because the leakage
-conductance is so low, the slight steady-state activation of voltage
-gated Na channels still has a large effect on Vrest.</p>
+<p>Новое значение V<sub>m</sub> определяется проводимостями каналов двух
+типов: каналов утечки (проводящих Na, K и Cl)
+и (не до конца закрытых) быстрых потенциал-зависимых натриевых
+каналов. Хотя может показаться, что в этом состоянии h = 0 и, следовательно,
+g_Na = 0, на самом деле они немного больше нуля. Поскольку проводимость утечки
+очень мала, даже слабая стационарная активация потенциал-зависимых
+Na-каналов сильно влияет на V<sub>покоя</sub>.</p>
 
 <ul><li>
-Question 2.  Using the parallel conductance equation, calculate the
-conductance of the fast sodium channel in this new resting condition.</p>
+<p>Вопрос 2. С помощью уравнения параллельных проводимостей рассчитайте
+проводимость быстрого натриевого канала в этом новом состоянии покоя.</p>
 
-<li>Question 3.  Stimulating the cell again (using the <b>Stim1</b>
-button) in this condition will not cause another spike.  Even if you
-raise the stimulus intensity to 20 nA and the duration to 10 msec, the
-cell will not spike.  (Try it.  Turn off the cyan plot by selecting
-"-" in the pop-up menu so you can see the yellow and green plots
-clearly when you hit <b>Stim1</b>.)  What is the explanation for this?</p></ul>
+<li><p>Вопрос 3. Повторная стимуляция клетки (кнопкой <b>Стим1</b>)
+в этом состоянии не вызовет нового спайка. Даже если
+увеличить силу стимула до 20 нА, а длительность — до 10 мс,
+спайка не будет. (Попробуйте. Отключите голубой график, выбрав
+«пусто» в раскрывающемся меню, чтобы при нажатии <b>Стим1</b> были хорошо видны жёлтый и зелёный
+графики.) Чем это объясняется?</p></ul>
 
 
-<a name=part5>
-<h2>Part V: The Delayed Rectifier</h2>
+<a name=part5></a>
+<h2>Часть V. Калиевый канал задержанного выпрямления</h2>
 
-Reset the simulator again.  Press <b>Stim1</b> to stimulate the cell
-and generate a "normal" spike, for reference.  Then call up the
-Channels window, and disable the fast sodium channel.  The resting
-potential hyperpolarizes only slightly, indicating that very few
-voltage dependent Na channels are open under normal resting
-conditions.</p>
+<p>Снова перезапустите симулятор. Нажмите <b>Стим1</b>, чтобы стимулировать клетку
+и вызвать «нормальный» спайк для сравнения. Затем откройте окно
+«Каналы» и отключите быстрый натриевый канал. Потенциал покоя
+лишь немного гиперполяризуется — это значит, что в нормальных условиях покоя открыто
+очень мало потенциал-зависимых Na-каналов.</p>
 
-Turn off the yellow plot (select "-") in the pop-up menu and set the
-green plot to "I_K", the delayed rectifier current.</p>
+<p>Отключите жёлтый график (выберите «пусто» в раскрывающемся меню), а для
+зелёного графика выберите «I_K» — ток канала задержанного выпрямления.</p>
 
-Call up the Stimulus window and set Stim1 to a 100 nA stimulus lasting
-5 msec.  Press the <b>Stim1</b> button in the main simulator window to
-depolarize the cell, and see what happens.</p>
+<p>Откройте окно «Стимулы» и настройте Стим1 на стимул 100 нА длительностью
+5 мс. Нажмите кнопку <b>Стим1</b> в главном окне симулятора, чтобы
+деполяризовать клетку, и посмотрите, что произойдёт.</p>
 
-<ul><li> Question 1.  Based on the Vm plot (red line), what is the
-peak value reached by the membrane voltage?  Click on the line to the
-right of the peak, and use the <b>&lt;</b> button to find the maximum.</p>
+<ul><li><p>Вопрос 1. Судя по графику V<sub>m</sub> (красная линия), какого
+пикового значения достигает мембранный потенциал? Щёлкните по линии
+справа от пика и найдите максимум кнопкой <b>&lt;</b>.</p>
 
 <li>
-Question 2: after reaching its peak, the membrane voltage quickly
-declines again, even though the stimulus is still on.  What is causing
-this?  Point to some evidence to support your answer.</p>
+<p>Вопрос 2. Достигнув пика, мембранный потенциал быстро
+снижается, хотя стимул ещё продолжается. Чем это
+вызвано? Приведите факты в подтверждение своего ответа.</p>
 
-<li>Question 3: when the stimulus ends, the cell does not simply return to
-its resting value; it undershoots it and then approaches the value
-from below.  Why doesn't it just return to its resting value?</p></ul>
+<li><p>Вопрос 3. Когда стимул заканчивается, клетка не просто возвращается
+к значению покоя: потенциал проскакивает его, а затем приближается к нему
+снизу. Почему он не возвращается сразу к значению покоя?</p></ul>
 
 
-<a name=part6>
-<h2>Part VI: Voltage-Gated Channel Parameters</h2>
+<a name=part6></a>
+<h2>Часть VI. Параметры потенциал-зависимых каналов</h2>
 
-Hodgkin and Huxley explained the behavior of voltage-gated channels in
-terms of activation and inactivation gates that opened or closed based
-on the membrane voltage.  These "gates" are pieces of channel
-structure (i.e., segments of the amino acid chains that make up the
-channel) which change their shape or position based on the potential
-across the membrane.  The m<sup>3</sup> term in the expression
-m<sup>3</sup>h for the fast sodium channel indicates that three
-segments of the channel must change their conformation to open the
-activation gate, while the h term indicates that only a single piece
-of structure controls the inactivation gate.</p>
+<p>Ходжкин и Хаксли объясняли поведение потенциал-зависимых каналов
+с помощью активационных и инактивационных ворот, которые открываются или закрываются
+в зависимости от мембранного потенциала. Эти «ворота» — части структуры
+канала (т. е. участки аминокислотных цепей, из которых состоит
+канал), меняющие свою форму или положение в зависимости от разности потенциалов
+на мембране. Член m<sup>3</sup> в выражении
+m<sup>3</sup>h для быстрого натриевого канала означает, что для открытия
+активационных ворот конформацию должны изменить три
+участка канала, а член h — что инактивационные ворота контролирует
+лишь один структурный элемент.</p>
 
-At the molecular level channel components do not just sit in a fixed
-position at temperatures above absolute zero,.  They continually
-change their conformation.  However, some conformations are more
-likely than others, and therefore occur more frequently.  The channel
-characteristics determine which configurations are more likely, as a
-function of the current membrane voltage.  The parameter m can be
-viewed as the probability that a particular segment of the activation
-gate is in the configuration required for the gate to be open.
-Alternatively, it can be viewed as the fraction of channels in which
-this segment is in the configuration required for the gate to open.
-Since all three segments must be in the open position for the
-activation gate to be open, and the segments are independent, the
-probability that the gate is open (or equivalently, the fraction of
-channels with open activation gates) is m<sup>3</sup>.</p>
+<p>На молекулярном уровне при температуре выше абсолютного нуля компоненты канала
+не находятся в фиксированном положении — они постоянно
+меняют свою конформацию. Однако одни конформации
+вероятнее других и поэтому встречаются чаще.
+Свойства канала определяют, какие конфигурации вероятнее
+в зависимости от текущего мембранного потенциала. Параметр m можно
+рассматривать как вероятность того, что определённый участок активационных
+ворот находится в конфигурации, необходимой для открытия ворот.
+Иначе говоря, это доля каналов, в которых
+этот участок находится в конфигурации, необходимой для открытия ворот.
+Поскольку для открытия активационных ворот все три участка
+должны быть в «открытом» положении, а участки независимы,
+вероятность того, что ворота открыты (или, что то же самое, доля
+каналов с открытыми активационными воротами), равна m<sup>3</sup>.</p>
 
-Reset the simulator again.  Call up the Channels window, and press the
-Details button for the fast sodium channel.  This displays a window
-showing the parameters responsible for the behavior of the fast sodium
-channel.  Looking at the top of the display, we see that this channel
-is permeable to the sodium ion, and that its maximum conductance g_max
-is 120 mico-Siemens.</p>
+<p>Снова перезапустите симулятор. Откройте окно «Каналы» и нажмите
+кнопку <b>Параметры</b> (в оригинале — Details) для быстрого натриевого канала. Откроется окно
+с параметрами, определяющими поведение быстрого натриевого
+канала. В верхней части окна видно, что этот канал
+проницаем для ионов натрия и что его максимальная проводимость g<sub>max</sub>
+равна 120 микросименс.</p>
 
 <ul><li>
-Question 1: how does g_max for the fast sodium channel compare with
-the passive sodium conductance?</p></ul>
+<p>Вопрос 1. Как соотносится g<sub>max</sub> быстрого натриевого канала с
+пассивной натриевой проводимостью?</p></ul>
 
-The left half of the Fast Sodium details window describes the
-activation gate, while the right half describes the inactivation gate.
-The behavior of an activation gate segment is governed by two rates:
-alpha is the rate at which segments move from the closed to the open
-state (causing m to increase), while beta is the rate at which they
-move from the open to the closed state (causing m to decrease).  Alpha
-and beta are determined by exponential functions whose parameters are
-shown in the window.  These equations are functions of Vm.  In the
-graph at the bottom, alpha is plotted in red, while beta is plotted in
-blue.</p>
+<p>Левая половина окна параметров быстрого натриевого канала описывает
+активационные ворота, а правая — инактивационные.
+Поведение участка активационных ворот определяется двумя скоростями:
+альфа (α) — скорость, с которой участки переходят из закрытого
+в открытое состояние (что увеличивает m), а бета (β) — скорость, с которой они
+переходят из открытого в закрытое состояние (что уменьшает m). Альфа
+и бета задаются экспоненциальными функциями, параметры которых
+показаны в окне. Эти функции зависят от V<sub>m</sub>. На
+графике внизу альфа показана красным цветом, а бета —
+синим.</p>
 
-Looking at this plot, we see that when Vm = -50, alpha is much less
-than beta.  That means segments will move from the open to the closed
-configuration at a higher rate than they move from closed to open.  As
-a result, the net change in m will be a decrease.</p>
+<p>По графику видно, что при V<sub>m</sub> = −50 альфа намного меньше
+беты. Это значит, что участки будут переходить из открытой
+конфигурации в закрытую быстрее, чем из закрытой в открытую. В
+результате m в целом будет уменьшаться.</p>
 
-<ul><li> Question 2: What relationship must hold between the red and
-blue lines for m to increase?  And, what is the approximate value of
-Vm at which this condition occurs (if there were no other mechanisms
-affecting the cell)?  How does this compare to the cell's normal
-resting potential?</p></ul>
+<ul><li><p>Вопрос 2. Какое соотношение должно выполняться между красной и
+синей линиями, чтобы m увеличивалась? И при каком примерно значении
+V<sub>m</sub> выполняется это условие (если бы на клетку не действовали другие механизмы)?
+Как это значение соотносится с нормальным потенциалом покоя клетки?</p></ul>
 
-Now press <b>Stim1</b> to trigger a spike, which we will use for
-reference.</p>
+<p>Теперь нажмите <b>Стим1</b>, чтобы вызвать спайк, который послужит нам
+для сравнения.</p>
 
-The state of the inactivation gate is indicated by the variable h,
-whose parameters are displayed in the right half of the Details
-window.  Suppose we want to lengthen the duration of a spike.  We can
-do that by slowing down the rate at which the inactivation gate
-closes, so that the channel remains open longer.  Beta is the rate at
-which the inactivation gate will close.  Change the beta magnitude
-parameter (c) from 1.0 to 0.4.  Then press the yellow <b>Nudge</b>
-button in the main simulator window a few times.  The cell starts
-spiking and doesn't stop.  Press the red <b>Stop</b> button to stop
-the simulation.  You should notice several things:</p>
+<p>Состояние инактивационных ворот описывается переменной h,
+параметры которой показаны в правой половине окна
+параметров канала. Предположим, мы хотим увеличить длительность спайка. Это можно
+сделать, замедлив закрытие инактивационных ворот,
+чтобы канал дольше оставался открытым. Бета — скорость, с которой
+закрываются инактивационные ворота. Измените параметр амплитуды беты
+(c) с 1.0 на 0.4. Затем несколько раз нажмите жёлтую кнопку <b>Шаг</b>
+в главном окне симулятора. Клетка начинает
+генерировать спайки и не останавливается. Нажмите красную кнопку <b>Стоп</b>, чтобы остановить
+моделирование. Вы должны заметить несколько вещей:</p>
 
 <ol>
-<li>The spike width is now greater, as we intended.</p>
+<li><p>Как мы и хотели, спайк стал шире.</p>
 
-<li> The green line (h) decreases more slowly during a spike, and does
- not get as close to zero as it did previously.  This is the direct
- consequence of our decreasing the h beta magnitude.</p>
+<li><p>Во время спайка зелёная линия (h) снижается медленнее и
+не подходит так близко к нулю, как раньше. Это прямое
+следствие уменьшения амплитуды беты для h.</p>
 
-<li> The yellow line (m) stays high for longer.  This is because the
- cell is remaining depolarized longer.  Remember that it is the
- closing of the inactivation gate (h) that cuts off the sodium influx
- and allows the cell to repolarize.  If the gate closes more slowly,
- Vm stays high longer, and hence the activation gate remains open
- longer.<p>
+<li><p>Жёлтая линия (m) дольше остаётся высокой. Это потому, что
+клетка дольше остаётся деполяризованной. Помните, что именно
+закрытие инактивационных ворот (h) прекращает вход натрия
+и позволяет клетке реполяризоваться. Если ворота закрываются медленнее,
+V<sub>m</sub> дольше остаётся высоким, а значит, и активационные ворота дольше остаются
+открытыми.</p>
 
-<li> The peak of the spike is higher than before.</p>
+<li><p>Пик спайка стал выше, чем раньше.</p>
 
 </ol>
 
-As you can see, the cell is quite sensitive to parameter changes;
-altering a single value produces a complex set of effects.  We may
-conclude that the channels governing a cell's behavior form an
-exquisitely tuned system.  And here we're only dealing with two
-channel types; keep in mind that some cells have a dozen!</p>
+<p>Как видно, клетка очень чувствительна к изменению параметров:
+изменение одного-единственного значения вызывает сложный комплекс эффектов. Можно
+заключить, что каналы, управляющие поведением клетки, образуют
+тончайшим образом настроенную систему. А ведь здесь мы имеем дело лишь с двумя
+типами каналов; помните, что у некоторых клеток их больше десятка!</p>
 
-<ul><li> Question 3: in order to stop the cell from oscillating on its
-own, we can change the passive channel conductance.  Hit the
-<b>Run</b> button in the main simulator window to continue the
-simulation.  By playing with the value of g_K in the Channels window,
-find a value close to the original value of 0.07 micro-Siemens that
-prevents the cell from spiking spontaneously.  The cell should of
-course still spike in reponse to a stimulus from the <b>Stim1</b>
-button.  Report the g_K value you find, to two significant
-digits.</p></ul>
+<ul><li><p>Вопрос 3. Чтобы клетка перестала генерировать колебания
+сама по себе, можно изменить проводимость пассивного канала. Нажмите
+кнопку <b>Пуск</b> в главном окне симулятора, чтобы продолжить
+моделирование. Меняя значение g<sub>K</sub> в окне «Каналы»,
+найдите значение, близкое к исходному (0,07 микросименса), при котором
+клетка перестаёт генерировать спайки спонтанно. Разумеется, клетка
+по-прежнему должна отвечать спайком на стимул от кнопки <b>Стим1</b>.
+Укажите найденное значение g<sub>K</sub> с точностью до двух значащих
+цифр.</p></ul>
 
     <hr>
-This work was supported in part by National Science Foundation grant
-DGE-9987588.  Any opinions, conclusions, or recommendations expressed
-herein are those of the authors and do not necessarily reflect the
-views of the National Science Foundation.
+Эта работа частично поддержана грантом Национального научного фонда США (NSF)
+DGE-9987588. Любые мнения, выводы или рекомендации, изложенные здесь, принадлежат
+авторам и не обязательно отражают точку зрения Национального научного фонда.
 <p/>
 
-<a href="index.html">Back to main HHsim page</a><p/>
+<a href="index.html">На главную страницу HHsim</a><p/>
 
     <hr>
-    <address><a href="mailto:dst@cs.cmu.edu">Dave Touretzky</a></address>
+    <address><a href="mailto:dst@cs.cmu.edu">Дэйв Турецки</a> (автор оригинала)</address>
 <!-- Created: Sun Aug 11 03:45:27 EDT 2002 -->
 <!-- hhmts start -->
-Last modified: Sun Sep 13 22:44:04 EDT 2015
+Последнее изменение оригинала: Sun Sep 13 22:44:04 EDT 2015
 <!-- hhmts end -->
   </body>
 </html>

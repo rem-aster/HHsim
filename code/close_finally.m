@@ -3,7 +3,7 @@ function close_finally
 global handles
 
 % if an HH simulator is up and running - close it all
-if figflag('HHsim Hodgkin-Huxley Simulator', 1) && length(handles) == 1 && length(fieldnames(handles)) > 50
+if ~isempty(findall(0,'Type','figure','Name','HHsim - симулятор Ходжкина-Хаксли')) && length(handles) == 1 && length(fieldnames(handles)) > 50
  delete(handles.chanwindow);
  delete(handles.memwindow);
  delete(handles.HH_Na_gates);

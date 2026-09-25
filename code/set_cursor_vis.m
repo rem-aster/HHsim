@@ -3,12 +3,12 @@ function set_cursor_vis (setstring)
 global handles vars
 
 if strcmp(setstring,'on')
-  set(handles.zoominbutton, 'String', 'Zoom in*');
-  set(handles.zoomoutbutton, 'String', 'Zoom out*');
+  set(handles.zoominbutton, 'String', 'Увеличить*');
+  set(handles.zoomoutbutton, 'String', 'Уменьшить*');
   opp = 'off';
 else
-  set(handles.zoominbutton, 'String', 'Zoom in');
-  set(handles.zoomoutbutton, 'String', 'Zoom out');
+  set(handles.zoominbutton, 'String', 'Увеличить');
+  set(handles.zoomoutbutton, 'String', 'Уменьшить');
   opp = 'on';
 end
 

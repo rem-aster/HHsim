@@ -22,11 +22,11 @@ drug.xmax=ic50*concmax;
 drug.xmin=ic50*concmin;
 drug.line=semilogx(xvals,yvals,'Color',vars.drugcolor);
 hold on
-xlabel(['concentration (' concunit ')'])
-ylabel('% inhbition')
+xlabel(['концентрация (' concunit ')'])
+ylabel('% ингибирования')
 title([abbr ' (' name ') - ' desc],'Color',vars.drugcolor,'FontSize',11);
 
-drug.helpt = text(20,45,'click here to apply drug','FontSize',12,'Color','c');
+drug.helpt = text(20,45,'щёлкните здесь, чтобы применить препарат','FontSize',12,'Color','c');
 drug.cursor = line('XData',[0 0],'YData',[0 100], ...
     'LineStyle',':','Color', 'c', 'HitTest','off', ...
     'Visible','off','parent',drug.axis);

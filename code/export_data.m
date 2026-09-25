@@ -10,20 +10,20 @@ end
 
 
 if (vars.vclampmode && vars.vc_numcurves<1)
-  mb=msgbox('Cannot export empty plot','Warning');
+  mb=msgbox('Нельзя экспортировать пустой график','Предупреждение');
   whiteBackground(mb)
   set(mb,'Color',[0.9 0.9 0.9]); 
   return
 end
   
-[filename, pathname] = uiputfile('*.txt','Export to File',vars.write_path);
+[filename, pathname] = uiputfile('*.txt','Экспорт в файл',vars.write_path);
 
 if (isequal(filename,0) | isequal(pathname,0))
   return;
 end
 
 vars.write_path=pathname;
-out=fopen(fullfile(pathname, filename), 'w');
+out=fopen(fullfile(pathname, filename), 'w', 'n', 'UTF-8');
 
 if (vars.vclampmode==0)
   strs=get(handles.v1button,'String');
@@ -34,12 +34,12 @@ if (vars.vclampmode==0)
   if (strcmp(get(handles.cursor,'visible'),'on'))
     u=get(handles.cursor,'UserData');
     line_id=u.line_id;
-    fprintf(out,'#time (msec)');
+    fprintf(out,'#время (мс)');
     switch (line_id)
       case 1
-        fprintf(out,', membrane voltage (mV)'); 
+        fprintf(out,', мембранный потенциал (мВ)'); 
       case 2
-        fprintf(out,', stimulus level (nA)'); 
+        fprintf(out,', уровень стимула (нА)'); 
       case 3
         fprintf(out,', %s', strs{v1});
       case 4
@@ -65,7 +65,7 @@ if (vars.vclampmode==0)
       fprintf(out,eol);
     end
   else
-    fprintf(out,'#time (msec), membrane voltage (mV), stimulus level (nA)');
+    fprintf(out,'#время (мс), мембранный потенциал (мВ), уровень стимула (нА)');
     if (v1<13), fprintf(out,', %s', strs{v1}); end
     if (v2<13), fprintf(out,', %s', strs{v2}); end
     if (v3<13), fprintf(out,', %s', strs{v3}); end
@@ -85,7 +85,7 @@ else
     u=get(handles.cursor,'UserData');
     line_id=u.line_id;
     line_id=mod(line_id-1,vars.vc_maxc)+1;
-    fprintf(out,['#time (msec), clamped voltage (mV), current (nA)' eol]);
+    fprintf(out,['#время (мс), фиксированный потенциал (мВ), ток (нА)' eol]);
     
     for i=1:vars.vc_iteration(line_id)
       fprintf(out,['%8.2f, %8.3g, %8.3g' eol], ...
@@ -94,7 +94,7 @@ else
               vars.vc_varplotdata(line_id, i));
     end
   else
-    fprintf(out,'[ #time (msec), clamped voltage (mV), current (nA) ] x %i', ...
+    fprintf(out,'[ #время (мс), фиксированный потенциал (мВ), ток (нА) ] x %i', ...
             vars.vc_numcurves);
     fprintf(out,eol);
 

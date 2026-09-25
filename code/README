@@ -1,35 +1,41 @@
-HHsim - A  Graphical Hodgkin-Huxley Simulator in MATLAB
+HHsim - графический симулятор Ходжкина-Хаксли для MATLAB
+         (русская версия)
 
-	Version 3.7 - August 27, 2025
+	Версия 3.7-ru (основана на HHsim 3.7 от 27 августа 2025 г.)
 
 Copyright (C) 2000,2001,2002,2003,2007,2012,2017,2025 by
 David S. Touretzky, Mark V. Albert, Nathaniel D. Daw,
 Alok Ladsariya and Mahtiyar Bonakdarpour.
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
+Эта программа является свободным программным обеспечением: вы можете
+распространять и/или изменять её на условиях Стандартной общественной
+лицензии GNU (GNU General Public License) в том виде, в каком она была
+опубликована Фондом свободного программного обеспечения, либо версии 2
+лицензии, либо (по вашему выбору) любой более поздней версии.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+Эта программа распространяется в надежде, что она будет полезной, но
+БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ, даже без подразумеваемых гарантий ТОВАРНОГО
+СОСТОЯНИЯ или ПРИГОДНОСТИ ДЛЯ КОНКРЕТНОЙ ЦЕЛИ. Подробнее см. в
+Стандартной общественной лицензии GNU.
 
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+Вы должны были получить копию Стандартной общественной лицензии GNU
+вместе с этой программой (файл COPYING, на английском языке); если это
+не так, напишите в Free Software Foundation, Inc., 59 Temple Place,
+Suite 330, Boston, MA  02111-1307  USA.
+
+Юридически значимым является только английский текст лицензии в файле
+COPYING; приведённый выше перевод уведомления носит справочный характер.
 
 ================================================================
 
-HHsim is a graphical simulation of a section of excitable neuronal
-membrane, using the Hodgkin-Huxley equations.
+HHsim - это графическая модель участка возбудимой мембраны нейрона,
+основанная на уравнениях Ходжкина-Хаксли.
 
-Design by David S. Touretzky
-Coding by David S. Touretzky, Mark V. Albert, Nathaniel D. Daw,
-          Alok Ladsariya and Mahtiyar Bonakdarpour
+Проектирование: David S. Touretzky (Дэвид С. Турецки)
+Программирование: David S. Touretzky, Mark V. Albert, Nathaniel D. Daw,
+          Alok Ladsariya и Mahtiyar Bonakdarpour
 
-Contact information:
+Контактная информация автора оригинала:
 
 	David S. Touretzky
 	Computer Science Department
@@ -37,30 +43,40 @@ Contact information:
 	Pittsburgh, PA 15213-3891
 
 	email: dst@cs.cmu.edu
-	
+
+Официальный (английский) сайт: https://www.cs.cmu.edu/~dst/HHsim/
+Русская версия:                https://github.com/rem-aster/HHsim
 
 ================================================================
-  RUNNING HHSIM
+  ЗАПУСК HHSIM
 
-From Matlab source only:
-  1) start up Matlab
-  2) cd to the directory holding the source code
-  3) type "hhsim"
+Из исходного кода MATLAB (нужен MATLAB R2020a или новее):
+  1) запустите MATLAB
+  2) перейдите (cd) в каталог с исходным кодом
+  3) введите "hhsim"
+
+Исходные файлы сохранены в кодировке UTF-8. В версиях MATLAB старше
+R2020a русские надписи будут отображаться неправильно.
+
+Готовые установщики для Windows и macOS, которым не нужна лицензия
+MATLAB, публикуются на странице
+https://github.com/rem-aster/HHsim/releases
+Как их собрать, описано в файле packaging/README.md репозитория.
 
 ================================================================
 
-Click on the purple Stim1 or Stim2 buttons to inject a depolarizing or
-hyperpolarizing current stimulus.  Click on the Membrane, Channels, 
-Stimuli or Drugs buttons to view and modify the simulation parameters.
+Нажмите фиолетовую кнопку Стим1 или Стим2, чтобы подать деполяризующий
+или гиперполяризующий импульс тока. Кнопки Мембрана, Каналы, Стимулы
+и Препараты открывают окна для просмотра и изменения параметров модели.
 
-This program was inspired by earlier BASIC and C programs by Professor
-David Wood, and lecture notes by Professor Bard Ermentrout, both at
-the University of Pittsburgh.  Thanks to Professor Jon Johnson at the
-University of Pittsburgh for many helpful suggestions for improving
-the user interface.
+Эта программа создана под влиянием более ранних программ на BASIC и C
+профессора Дэвида Вуда (David Wood) и конспектов лекций профессора Барда
+Эрментраута (Bard Ermentrout) из Питтсбургского университета. Благодарим
+профессора Джона Джонсона (Jon Johnson) из Питтсбургского университета
+за многочисленные полезные советы по улучшению пользовательского
+интерфейса.
 
-This work was supported in part by National Science Foundation grant
-DGE-9987588.  Any opinions, conclusions, or recommendations expressed
-herein are those of the authors and do not necessarily reflect the
-views of the National Science Foundation.
-
+Эта работа частично поддержана грантом Национального научного фонда США
+(NSF) DGE-9987588. Любые мнения, выводы или рекомендации, изложенные
+здесь, принадлежат авторам и не обязательно отражают точку зрения
+Национального научного фонда.

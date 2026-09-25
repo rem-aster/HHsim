@@ -1,66 +1,68 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>HHsim Cursor Controls</title></head><body bgcolor="#ccffff">
+<html lang="ru"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>HHsim: управление курсором</title></head><body bgcolor="#ccffff">
     <center>
-      <h1>HHsim Cursor Controls</h1>
+      <h1>HHsim: управление курсором</h1>
     </center>
 
-The cursor provides a way to measure the value of any plotted
-simulation parameter, and find maxima and minima.  Clicking on any of
-the plot lines in the main window sets the cursor to that point.  The
-cursor is displayed as a colored lozenge matching the color of the
-plot variable being measured.  Setting the cursor also activates the
-cursor panel in the lower right corner.<p>
+Курсор позволяет измерить значение любого параметра модели,
+выведенного на график, и найти максимумы и минимумы. Щелчок по любой
+линии графика в главном окне устанавливает курсор в эту точку.
+Курсор отображается цветным ромбиком того же цвета, что и линия
+измеряемой переменной. Установка курсора также активирует
+панель курсора в правом нижнем углу окна.<p>
 
 </p><center>
-<img src="images/cursor1.png">
+<img src="images/cursor1.png" style="max-width:100%">
 </center>
-		<p>In the figure above, the cursor is measuring the resting potential (red line in the upper plot) just before an inhibitory stimulus was applied. The cursor panel in the lower right indicates that the membrane voltage is -61.1 mV at 21.74 msec from the start of the simulation.</p>
-		<h3> Moving the Cursor </h3>
-		
+		<p>На рисунке выше курсор измеряет потенциал покоя (красная линия на верхнем графике) непосредственно перед подачей тормозного стимула. Панель курсора в правом нижнем углу показывает, что мембранный потенциал равен −61,1 мВ через 21,74 мс от начала моделирования.</p>
+		<h3> Перемещение курсора </h3>
 
-The cursor can be moved to a new location by clicking there.  The
-cursor can be hidden (and the cursor panel deactivated) by clicking
-at any empty point in the plot windows, i.e., where there is no line. The cursor can also be 
-hidden by clicking the close box (marked "X") in the cursor panel.<p>
 
-Once the cursor is set at a point, it can be moved left or right using
-the cursor control buttons in the cursor panel.  The <b>&lt;</b> and
-<b>&gt;</b> buttons nudge the cursor one time-point to the left or
-right, respectively.  The <b>&lt;&lt;</b> and <b>&gt;&gt;</b> buttons
-move the cursor left or right to the nearest local maximum or minimum
-value.  For example, suppose we want to find the greatest amount of
-closure of the sodium inactivation gate (h) after a spike.  Start by
-clicking on the green line to activate the cursor:</p><p>
+Курсор можно переместить в новую точку, щёлкнув по ней. Чтобы
+скрыть курсор (и деактивировать панель курсора), щёлкните
+по любому пустому месту графиков, т. е. там, где нет линии. Курсор также можно
+скрыть, нажав кнопку закрытия (с надписью «X») на панели курсора.<p>
+
+Установленный курсор можно перемещать влево или вправо
+кнопками управления на панели курсора. Кнопки <b>&lt;</b> и
+<b>&gt;</b> сдвигают курсор на одну точку по времени влево или
+вправо соответственно. Кнопки <b>&lt;&lt;</b> и <b>&gt;&gt;</b>
+перемещают курсор влево или вправо к ближайшему локальному максимуму или минимуму.
+Например, пусть нужно найти момент наибольшего
+закрытия инактивационных ворот натриевого канала (h) после спайка. Сначала
+щёлкните по зелёной линии, чтобы активировать курсор:</p><p>
 
 </p><center>
-<img src="images/cursor2.png">
+<img src="images/cursor2.png" style="max-width:100%">
 </center>
-<p>We see that the value of the inactivation gate parameter, h, is 0.575 at 29.94 msec from the start of the simulation. Next, click on the <b>&gt;&gt;</b> button to move the cursor right to the nearest extreme
-value:</p><p>
+<p>Видно, что значение переменной инактивационных ворот h равно 0,575 через 29,94 мс от начала моделирования. Теперь нажмите кнопку <b>&gt;&gt;</b>, чтобы сдвинуть курсор вправо к ближайшему экстремальному
+значению:</p><p>
 
 </p><center>
-<img src="images/cursor3.png">
+<img src="images/cursor3.png" style="max-width:100%">
 </center>
 <p>
 
-The cursor panel shows that the local minimum value for <i>h</i> is 0.0703, and it occurs at 32.34 msec.</p><p>The <b>var</b> button is used to move the cursor vertically from one plot line to another, to change the variable being measured at that point in time. For example, suppose we wanted to know the value of the potassium activation gate (n) at the peak of a spike. To measure this, set the cursor on the red line (membrane voltage) and use the <b>&lt;&lt;</b> or <b>&gt;&gt;</b> button to find
-the peak.  Then press the <b>var</b> button until the cursor is on the
-cyan line (n), and read the value in the cursor panel.</p><p>
+Панель курсора показывает, что локальный минимум <i>h</i> равен 0,0703 и достигается через 32,34 мс.</p><p>Кнопка <b>пер.</b> (переменная; в оригинале — var) переводит курсор по вертикали с одной линии графика на другую, чтобы измерить другую переменную в тот же момент времени. Например, пусть нужно узнать значение переменной активационных ворот калиевого канала (n) на пике спайка. Для этого установите курсор на красную линию (мембранный потенциал) и кнопкой <b>&lt;&lt;</b> или <b>&gt;&gt;</b> найдите
+пик. Затем нажимайте кнопку <b>пер.</b>, пока курсор не окажется на
+голубой линии (n), и прочитайте значение на панели курсора.</p><p>
 
-Clicking on the <b>Save</b> button in the cursor panel stores the
-Hodgkin-Huxley values at the current cursor position.  The simulator
-can later be reset to these values by clicking on the <b>Recall</b>
-button.  This feature is useful for resetting the system to a known
-resting state after each of a series of manipulations, so that fair
-comparisons can be made.</p><p>
+Кнопка <b>Запомнить</b> (в оригинале — Save) на панели курсора сохраняет
+значения переменных Ходжкина–Хаксли в текущей позиции курсора. Позже можно
+вернуть модель к этим значениям, нажав кнопку <b>Вернуть</b> (Recall).
+Это удобно, чтобы после каждой из серии манипуляций возвращать систему
+в известное состояние покоя и корректно сравнивать
+результаты.</p><p>
 
-<a href="http://www.cs.cmu.edu/%7Edst/HHsim/guide.html">Back to the Guide to Using HHsim</a></p><p>
+<a href="guide.html">Назад, к руководству по работе с HHsim</a></p><p>
 
     </p><hr>
-    <address><a href="mailto:dst@cs.cmu.edu">Dave Touretzky</a></address>
+    <address><a href="mailto:dst@cs.cmu.edu">Дэйв Турецки</a> (автор оригинала)</address>
 <!-- Created: Sat Nov 16 17:55:52 EST 2002 -->
 <!-- hhmts start -->
-Last modified: Thu Nov  6 05:14:56 EST 2003
+Последнее изменение оригинала: Thu Nov  6 05:14:56 EST 2003
 <!-- hhmts end -->
-  
+
 </body></html>

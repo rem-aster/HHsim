@@ -2,7 +2,7 @@ function make_passive_channel(xi,yi,name,descr,ginit,gfmt)
 
   global vars handles
 
-  buttonwidth = 20; buttonheight = 20; xtinc = 150;
+  buttonwidth = 20; buttonheight = 20; xtinc = 180;
 
   h = uicontrol('Style','CheckBox','Fontsize',8, ...
 	    'Position',[xi yi buttonwidth buttonheight],'String','','Value',1, ...

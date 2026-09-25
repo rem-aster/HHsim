@@ -43,7 +43,7 @@ if (isempty(v1top) | strcmp(v1top,yaxtop)) & ...
       (isempty(v3top) | strcmp(v3top,yaxtop))
   set(handles.varplot,'YTickLabel',{yaxbot,yaxtop})
 else
-  set(handles.varplot,'YTickLabel',{'Low','High'})
+  set(handles.varplot,'YTickLabel',{'мин','макс'})
 end
 
 % Since backing store is turned off, lines aren't redrawn automatically.
@@ -61,7 +61,7 @@ set(handles.v2axislabel,'String',labels{get(handles.v2button','Value')})
 set(handles.v3axislabel,'String',labels{get(handles.v3button','Value')})
 
 for h = [handles.v1axislabel handles.v2axislabel handles.v3axislabel]
-  if strcmp(get(h,'String'),'blank')
+  if strcmp(get(h,'String'),'пусто')
     set(h,'Visible','off')
   else
     set(h,'Visible','on')
@@ -90,14 +90,14 @@ switch varno
     top = '1';
     bot = '0';
   case {4, 5, 11}
-    top = '0.75 uA';
-    bot = '-0.75 uA';
+    top = '0.75 мкА';
+    bot = '-0.75 мкА';
   case {6, 7, 12}
-    top = '30 uS';
-    bot = '0 uS';
+    top = '30 мкСм';
+    bot = '0 мкСм';
   case {8}
-    top = '0.05 uA';
-    bot = '-0.05 uA';
+    top = '0.05 мкА';
+    bot = '-0.05 мкА';
   otherwise
     top = '';
     bot = '';

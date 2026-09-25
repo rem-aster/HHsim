@@ -9,20 +9,20 @@ clf
 width = 480; height = 550;
 pos = get(gcf,'Position');
 set(gcf,'Units','pixels','Position',[480 200 width height],'Visible','off')
-set(gcf,'Name','Stimuli')
+set(gcf,'Name','Стимулы')
 set(gcf, 'CloseRequestFcn', 'callbacks(12)');
 blackBackground(gcf)
 cla, axis off
 set(gca,'Units','pixels','Position',[0 0 width height])
 axis([1 width 1 height])
 
-text(130,530,'Stimulus Patterns','FontSize',20,'Color',vars.stimcolor)
+text(120,530,'Шаблоны стимулов','FontSize',20,'Color',vars.stimcolor)
 buttonwidth = 20; buttonheight = 20;
 
-uicontrol('Style','PushButton','Position',[1 1 40 20],'String','Reset', ...
+uicontrol('Style','PushButton','Position',[1 1 40 20],'String','Сброс', ...
 	'Callback','callbacks(11)')
 
-uicontrol('Style','PushButton','Position',[51 1 40 20],'String','Hide', ...
+uicontrol('Style','PushButton','Position',[51 1 40 20],'String','Скрыть', ...
 	'Callback','callbacks(12)')
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -30,7 +30,7 @@ function gate = make_gate(varname,letter,gatename,xi,yi, ...
   text(xi,yi,[letter ':'],'FontSize',15,'Color','w')
   yi = yi + yinc;
 
-  make_valtext('',xi,yi,'%s','exponent');
+  make_valtext('',xi,yi,'%s','показатель степени');
   h = uicontrol('Style','Popup','String',{'0' '1' '2' '3' '4' '5' '6'}, ...
 	    'Value',gexpt+1, ...
         'UserData',gexpt+1, ...
@@ -54,7 +54,7 @@ function gate = make_gate(varname,letter,gatename,xi,yi, ...
   vrange = vmin:vmax;
   gate.aline = plot(vrange,evalrate(gate.alpha,vrange),'Color','r');
   gate.bline = plot(vrange,evalrate(gate.beta,vrange),'Color','b');
-  title('alpha, beta')
+  title('\alpha, \beta')
   xlabel('V_m')
-  ylabel('msec^{-1}')
+  ylabel('мс^{-1}')
   set(gcf,'CurrentAxes',axsave);
