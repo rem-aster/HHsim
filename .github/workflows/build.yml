@@ -139,6 +139,16 @@ jobs:
           export OCTAVE_HOME="$(dirname "$(dirname "$OCT")")"
           export HHSIM_CODE=/tmp/Apps/HHsim.app/Contents/Resources/hhsim/code
           "$OCT" --no-gui --norc --quiet --eval "addpath('tests'); smoke_test"
+      - name: Обычный запуск приложения
+        run: |
+          /tmp/Apps/HHsim.app/Contents/MacOS/HHsim > launch.log 2>&1 &
+          PID=$!
+          sleep 40
+          cat launch.log
+          if ! kill -0 $PID 2>/dev/null; then echo "::error::HHsim завершился сразу после запуска"; exit 1; fi
+          grep -q "Готово" launch.log || { echo "::error::HHsim не загрузился"; exit 1; }
+          if grep -q "Ошибка" launch.log; then exit 1; fi
+          kill $PID; pkill -f octave || true
 
   release:
     name: Публикация выпуска

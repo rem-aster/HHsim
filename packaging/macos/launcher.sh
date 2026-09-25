@@ -31,7 +31,7 @@ EOF
 }
 
 find_octave() {
-  if [ -x "$ENV_DIR/bin/octave" ]; then echo "$ENV_DIR/bin/octave"; return; fi
+  if [ -f "$ENV_DIR/.hhsim-installed" ] && [ -x "$ENV_DIR/bin/octave" ]; then echo "$ENV_DIR/bin/octave"; return; fi
   [ -n "$HHSIM_IGNORE_SYSTEM_OCTAVE" ] && return                               # для проверки установки
   if command -v octave >/dev/null 2>&1; then command -v octave; return; fi   # например, из Homebrew
 }
@@ -45,18 +45,23 @@ install_octave() {
   esac
   PLATFORM="${HHSIM_PLATFORM:-$PLATFORM}"   # для проверки на других системах
   local tmp="$BASE/tmp"
-  rm -rf "$tmp" "$ENV_DIR.partial" && mkdir -p "$tmp"
+  # окружение conda нельзя переносить после установки (в файлах зашит путь),
+  # поэтому ставим сразу на место, а об успехе сообщает файл-метка
+  rm -rf "$tmp" "$ENV_DIR" && mkdir -p "$tmp"
   {
     echo "Скачивание micromamba ($PLATFORM)..."
     curl -fsSL --retry 3 "https://micro.mamba.pm/api/micromamba/$PLATFORM/latest" -o "$tmp/micromamba.tar.bz2" &&
     tar -xjf "$tmp/micromamba.tar.bz2" -C "$tmp" bin/micromamba &&
     echo "Установка GNU Octave $OCTAVE_VERSION..." &&
     MAMBA_ROOT_PREFIX="$tmp/root" "$tmp/bin/micromamba" create -y -q \
-        -p "$ENV_DIR.partial" -c conda-forge --override-channels "octave=$OCTAVE_VERSION" &&
-    mv "$ENV_DIR.partial" "$ENV_DIR"
+        -p "$ENV_DIR" -c conda-forge --override-channels "octave=$OCTAVE_VERSION" &&
+    echo "Проверка Octave..." &&
+    OCTAVE_HOME="$ENV_DIR" "$ENV_DIR/bin/octave-cli" --norc --quiet --eval "disp(version)" &&
+    touch "$ENV_DIR/.hhsim-installed"
   } >> "$LOG" 2>&1
   local status=$?
   rm -rf "$tmp"
+  [ $status -eq 0 ] || rm -rf "$ENV_DIR"
   return $status
 }
 
