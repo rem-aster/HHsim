@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>HHsim: Graphical Hodgkin-Huxley Simulator</title></head><body bgcolor="#ccffff">
+    <center>
+    <h1>HHsim: Graphical Hodgkin-Huxley Simulator</h1>
+      <h3> <a href="https://www.cs.cmu.edu/%7edst">David S. Touretzky</a>, 
+<a href="https://mva.me">Mark V. Albert</a>, Nathaniel D. Daw,  Alok Ladsariya and Mahtiyar Bonakdarpour</h3>
+</center>
+
+HHsim is a graphical simulation of a section of excitable neuronal
+membrane using the Hodgkin-Huxley equations.  It provides full access
+to the Hodgkin-Huxley parameters, membrane parameters, stimulus
+parameters, and ion concentrations.
+To learn about the Hodgkin-Huxley equations, see:
+<ul>
+<li> <a href="https://www.cs.cmu.edu/%7edst/HHsim/bard-channels.pdf" target="_new">Channeling with Bard</a>,
+an online tutorial by <a href="https://www.pitt.edu/%7ephase/" target="_new">G. Bard Ermentrout</a>.
+
+</li><li> <a href="https://christofkoch.com/biophysics-book/" target="_new">Biophysics of Computation: Information Processing in Single Neurons</a>, by Christof Koch.  (See
+<a href="https://christofkoch.files.wordpress.com/2014/01/hodgkin_huxley.pdf" target="_new">chapter 6</a>.)
+
+</li><li> <a href="https://boulderschool.yale.edu/sites/default/files/files/DayanAbbott.pdf" target="_new">Theoretical
+      Neuroscience</a>, by <a href="https://www.kyb.tuebingen.mpg.de/person/95844/250676" target="_new">Peter Dayan</a> and
+    <a href="https://ctn.zuckermaninstitute.columbia.edu/people/larry-f-abbott" target="_new">Larry F. Abbott</a>.  (See chapter 5.)
+
+</li><li> <a href="https://web.archive.org/web/20040904063242/https://www.ces.clemson.edu/~petersj/BioEng/SimpleGates/index.html" target="_new">A 
+Simple Sodium - Potassium Gate Model</a>, by James K. Peterson.
+</li></ul>
+
+In contrast with NEURON or GENESIS, which are vastly more
+sophisticated research tools, HHsim is simple educational software
+designed specifically for graduate or undergraduate neurophysiology
+courses.  The user interface can be mastered in a couple of minutes
+and provides many ways for the student to experiment.<p>
+
+HHsim is <b>free software</b> distributed under the GNU <a href="https://www.cs.cmu.edu/%7Edst/HHsim/code/COPYING">General Public License</a>.  The official HHsim
+web site is at <a href="https://www.cs.cmu.edu/%7edst/HHsim">https://www.cs.cmu.edu/~dst/HHsim</a>.
+The <a href="https://www.cs.cmu.edu/%7Edst/HHsim/guide.html">online documentation</a>, including sample <a href="https://www.cs.cmu.edu/%7Edst/HHsim/screenshots.html">screen shots</a>, is available on this web
+site, and also included with the program when you download it.  Also
+included are <a href="https://www.cs.cmu.edu/%7Edst/HHsim/exercises.html">sample exercises</a> that use
+the simulator.</p><p>
+
+</p><h3> Download HHsim Now </h3>HHsim is available as a Windows or
+MacOS executable file that does not require a Matlab license.  Source
+code is included.  It is also available in source-only form; use that
+version on Linux.  The latest release of HHsim is version 3.7,
+released in August 27, 2025. <p>
+
+
+</p><center>
+<table bgcolor="#ffffc0" border="1" width="60%">
+
+<tbody><tr>
+<td>
+<center>
+<br>
+<b>Windows/x86_64</b><br>
+<i>Version 3.6 - March 15, 2017</i><br>
+<a href="https://www.cs.cmu.edu/~dst/HHsim/hhsim_36/HHsim_36_win.zip">HHsim_36_win.zip</a> (682 MB)<br/>
+<p>
+</p>
+</center>
+</td>
+
+<td>
+<center>
+<br>
+<b>Linux</b><br>Please run the source version.</p></center><br/>
+</td>
+
+<td>
+<center>
+<b>Mac OS X (Intel Architecture)</b><br><i>Version 3.6 - July, 2017</i><br>
+<a href="https://www.cs.cmu.edu/~dst/HHsim/hhsim_36/HHsim3_6_Mac.zip">HHsim3_6_Mac.zip</a><p>
+</p></center>
+</td>
+
+</tr>
+
+<tr>
+<td colspan="3">
+<center>
+<br>
+<b>Matlab source code only</b><br><i>Version 3.7 - August 27, 2025</i><br>
+<a href="https://www.cs.cmu.edu/%7Edst/HHsim/hhsim_37/hhsim_37_source.zip">hhsim_37_source.zip</a>
+or <a href="code/">browse the code online</a>
+<p>
+</p></center>
+</td></tr>
+</tbody></table>
+		</center>
+<p>
+
+</p><hr><h3> Installation Instructions (version 3.6) </h3>
+
+<b>Windows:</b>
+
+<ol>
+  <li>Unzip hhsim_36_win.zip to a directory of your choice.</li>
+  <li>Run HHsim_36.exe, which is the HHsim installer.  You must have Administrator rights on the machine
+in order to run the installer.
+  <li> Ignore the "Connection" option and just keep pressing the "Next" button.
+  <li> The installer will first install the MATLAB Runtime Component,
+    allowing you to run standalone MATLAB applications. It will then install HHSim and
+    leave an icon on your desktop.
+  <li> You are now ready to use HHSim.</li>
+</ol>
+
+<b>Linux:</b><ul><li>Please run HHsim from source.  You will need to install MATLAB first.</ul>
+
+<b>Mac (Intel Architecture):</b>
+
+<ol>
+  <li>Unzip HHsim3_6_Mac.zip into the directory of your choice.
+  </li>
+  <li>Use the MCR_Installer dmg to install the MATLAB Runtime
+    Component, allowing you to run standalone MATLAB applications. NOTE:
+    be sure to use the default location:
+    /Applications/MATLAB/MATLAB_Component_Runtime/v76
+  </li>
+  <li>
+    Use the HHSim dmg to install HHsim.
+  </li>
+</ol>
+
+
+<hr>
+<h3>Sample screen shot:</h3>
+<img src="images/main.png" align="middle"><p>
+
+
+</p><blockquote>
+<a href="https://www.cs.cmu.edu/%7Edst/HHsim/guide.html"><h3>Click here for HHsim User's Guide</h3></a>
+</blockquote>
+<p>
+
+
+    </p><hr>
+This work was supported in part by National Science Foundation grant
+DGE-9987588.  Any opinions, conclusions, or recommendations expressed
+herein are those of the authors and do not necessarily reflect the
+views of the National Science Foundation.
+<p>
+
+    </p><address><a href="mailto:dst@cs.cmu.edu">Dave Touretzky</a></address>
+<!-- Created: Mon Oct  9 18:26:22 EDT 2000 -->
+<!-- hhmts start -->
+Last modified: Mon Jul 31 17:29:49 EDT 2017
+<!-- hhmts end -->
+  
+</body></html>

@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>HHsim: Graphical Hodgkin-Huxley Simulator</title></head><body bgcolor="#ccffff">
+    <center>
+    <h1>HHsim: Graphical Hodgkin-Huxley Simulator</h1>
+      <h3> <a href="http://www.cs.cmu.edu/%7edst">David S. Touretzky</a>, 
+<a href="http://www.cs.cmu.edu/%7emva">Mark V. Albert</a>, Nathaniel D. Daw,  Alok Ladsariya and <a href="http://www.andrew.cmu.edu/user/mbonakda/">Mahtiyar Bonakdarpour</a></h3>
+</center>
+
+HHsim is a graphical simulation of a section of excitable neuronal
+membrane using the Hodgkin-Huxley equations.  It provides full access
+to the Hodgkin-Huxley parameters, membrane parameters, stimulus
+parameters, and ion concentrations.
+To learn about the Hodgkin-Huxley equations, see:
+<ul>
+<li> <a href="http://www.cs.cmu.edu/%7edst/HHsim/bard-channels.pdf">Channeling with Bard</a>,
+an online tutorial by <a href="http://www.pitt.edu/%7ephase/">G. Bard Ermentrout</a>.
+
+</li><li> <a href="http://www.klab.caltech.edu/%7ekoch/biophysics-book/">Biophysics of Computation: Information Processing in Single Neurons</a>, by Christof Koch.  (See
+<a href="http://www.klab.caltech.edu/%7ekoch/biophysics-book/hodgkin_huxley.ps">chapter 6</a>.)
+
+</li><li> <a href="http://people.brandeis.edu/%7eabbott/book/">Theoretical
+Neuroscience</a>, by <a href="http://www.gatsby.ucl.ac.uk/%7edayan">Peter Dayan</a> and <a href="http://people.brandeis.edu/%7eabbott">Larry F. Abbott</a>.  (See chapter 5.)
+
+</li><li> <a href="http://www.ces.clemson.edu/%7epetersj/BioEng/SimpleGates/index.html">A 
+Simple Sodium - Potassium Gate Model</a>, by James K. Peterson.
+</li></ul>
+
+In contrast with NEURON or GENESIS, which are vastly more
+sophisticated research tools, HHsim is simple educational software
+designed specifically for graduate or undergraduate neurophysiology
+courses.  The user interface can be mastered in a couple of minutes
+and provides many ways for the student to experiment.<p>
+
+HHsim is <b>free software</b> distributed under the GNU <a href="http://www.cs.cmu.edu/%7Edst/HHsim/code/COPYING">General Public License</a>.  The official HHsim
+web site is at <a href="http://www.cs.cmu.edu/%7edst/HHsim">http://www.cs.cmu.edu/~dst/HHsim</a>.
+The <a href="http://www.cs.cmu.edu/%7Edst/HHsim/guide.html">online documentation</a>, including sample <a href="http://www.cs.cmu.edu/%7Edst/HHsim/screenshots.html">screen shots</a>, is available on this web
+site, and also included with the program when you download it.  Also
+included are <a href="http://www.cs.cmu.edu/%7Edst/HHsim/exercises.html">sample exercises</a> that use
+the simulator.</p><p>
+
+</p><h3> Download HHsim Now </h3>HHsim is available as a Windows, Mac,
+or Unix executable file that does not require a Matlab license. Source
+code is included. It is also available in source-only form if you have
+Matlab R2007a or later. The latest release of HHsim is version 3.1,
+released February 16, 2008.  Notes for Mac users: (1) HHsim requires
+that X11 be installed; it's available in
+/Applications/Utilities/X11.app. (2)There is a known graphics error in
+Leopard (Mac OS 10.5) that fails to display button labels.  We're
+working on a fix for this; for now, please see the screenshot below
+for the labels. The functionality is the same. <p>
+
+
+</p><center>
+<table bgcolor="#ffffc0" border="1" width="60%">
+
+<tbody><tr>
+<td>
+<center>
+<br>
+<b>Windows/Pentium (Windows XP)</b><br><i>Version 3.1 - Feb 16, 2008</i><br>
+<a href="http://www.cs.cmu.edu/%7Edst/HHsim/hhsim_31/hhsim_31_win.zip">hhsim_31_win.zip</a>
+<p>
+</p>
+</center>
+</td>
+
+<td>
+<center>
+<br>
+<b>Linux/Pentium</b><br><i>Version 3.1 - Feb 16, 2008</i><br>
+<a href="http://www.cs.cmu.edu/%7Edst/HHsim/hhsim_31/hhsim_31_linux.zip">hhsim_31_linux.zip</a><p>
+</p></center>
+</td></tr>
+
+<tr><td colspan="1"><center><br>
+
+<b>Mac OS X (Intel Architecture)</b><br><i>Version 3.1 - Feb 16, 2008</i><br>
+<a href="http://www.cs.cmu.edu/%7Edst/HHsim/hhsim_31/hhsim_31_macIntel.zip">hhsim_31_macIntel.zip</a><p>
+</p></center>
+<!---<b>Mac OS X</b><br><i>Version 2.03</i></br>
+<a href="hhsim_2/hhsim-macosx.sit">hhsim-macosx.sit</a><p>
+</p></center>-->
+</td>
+<td colspan="1">
+<center>
+<br>
+
+<b>Mac OS X (PowerPC Architecture)</b><br><i>Version 3.1 - Aug 23, 2008</i><br>
+<a href="http://www.cs.cmu.edu/%7Edst/HHsim/hhsim_31/hhsim_31_macPPC.zip">hhsim_31_macPPC.zip</a><p>
+</p></center>
+<!---<b>Mac OS X</b><br><i>Version 2.03</i></br>
+<a href="hhsim_2/hhsim-macosx.sit">hhsim-macosx.sit</a><p>
+</p></center>-->
+</td>
+
+</tr>
+
+<tr>
+<td colspan="2">
+<center>
+<br>
+<b>Matlab source code only</b><br><i>Version 3.1 - Dec 20, 2007</i><br>
+<a href="http://www.cs.cmu.edu/%7Edst/HHsim/hhsim_31/hhsim_31_source.zip">hhsim_31_source.zip</a>
+or <a href="code/">browse the code online</a>
+<p>
+</p></center>
+</td></tr>
+</tbody></table>
+		</center>
+<p>
+
+</p><hr><h3> Installation Instructions (version 3.1) </h3>
+<b>Windows:</b><ul><li>Unzip hhsim_31_win.zip to a directory of your choice.</li>
+<li>Run MCRInstaller.exe, this installs the MATLAB Runtime Component
+allowing you to run standalone MATLAB applications. You are now ready
+to use HHSim.</li>
+<li> Run hhsim.exe.</li></ul>
+<b>Linux:</b><ul><li>Unzip hhsim_31_linux.zip into a the directory of your choice.</li>
+<li>cd into that directory and run ./hhsim</li></ul>
+<b>Mac (Intel Architecture):</b><ul><li>Unzip hhsim_31_macIntel.zip into the directory of your choice</li>
+<li>Use the MCR_Installer dmg to install the MATLAB Runtime Component,
+allowing you to run standalone MATLAB applications. NOTE: be sure to
+use the default location:
+/Applications/MATLAB/MATLAB_Component_Runtime/v76
+</li>
+<li>
+Use the HHSim dmg to install HHsim.
+</li>
+</ul>
+
+<b>Mac (PowerPC Architecture):</b><ul>
+<li>Unzip hhsim_31_macPPC.zip into the directory of your choice</li>
+<li>Use the Matlab_Component_Runtime dmg to install the MATLAB Runtime Component,
+allowing you to run standalone MATLAB applications.
+</li>
+<li>Use 'Terminal' and, while in the hhsim_31_macPPC directory, type
+(assuming you installed MCR in the default location):
+
+<blockquote>./run_hhsim.sh &nbsp; /Applications/MATLAB/MATLAB_Component_Runtime/v76</blockquote>
+</li>
+</ul>
+
+
+
+<hr>
+<h3>Sample screen shot:</h3>
+<img src="images/main.png" align="middle"><p>
+
+
+</p><blockquote>
+<a href="http://www.cs.cmu.edu/%7Edst/HHsim/guide.html"><h3>Click here for HHsim User's Guide</h3></a>
+</blockquote>
+<p>
+
+
+    </p><hr>
+This work was supported in part by National Science Foundation grant
+DGE-9987588.  Any opinions, conclusions, or recommendations expressed
+herein are those of the authors and do not necessarily reflect the
+views of the National Science Foundation.
+<p>
+
+    </p><address><a href="mailto:dst@cs.cmu.edu">Dave Touretzky</a></address>
+<!-- Created: Mon Oct  9 18:26:22 EDT 2000 -->
+<!-- hhmts start -->
+Last modified: Fri Oct 24 19:28:47 EDT 2008
+<!-- hhmts end -->
+  
+</body></html>

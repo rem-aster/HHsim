@@ -1,0 +1,55 @@
+COMPILING AND DEPLOYING YOUR MATLAB APPLICATION ON WINDOWS
+ 
+MATLAB is an interpreted language; that is, instead of using a
+compiler to run the program you use an interpreter. An interpreter
+translates the program into machine code on-the-fly and runs it at the
+same time (doing so one statement at a time). Interpreted programs
+stay in the source code they were programmed in, as opposed to
+compiled programs which are usually read from a binary
+file. Interpreted languages are usually slower but it makes things
+convenient when they're ready to be tested. MATLAB allows programs to
+be compiled as C code, and the following will explain how.
+ 
+ 
+ Note: This has been tested on
+version 7.0.1 and later.
+ 
+ Here are step-by-step instructions on how
+to compile and deploy your application:
+ 
+ 0) You'll only need to run
+this once to setup the compiler. Type this into MATLAB, and select a C
+compiler:
+ 
+ mbuild -setup
+ 
+ 1) For me, all of my *.m files were in
+one directory. I had a 'top' file, let's call it topfile.m, that I ran
+to start my application. To compile this file type this into MATLAB:
+
+
+ mcc -m topfile.m
+ 
+ This gives you 3 or 4 files, among them being
+topfile.exe and topfile.ctf. These two files will need to be deployed
+when you're shipping off your final project.
+ 
+ 2) Now that you have
+the executable, you'll need a way to give the end-user the necessary
+library files. Things have changed in MATLAB. Now you have to package
+an extra executable so the end-user can install something called the
+MATLAB Component Runtime application. This is where I found the
+installer:
+ 
+ $MATLAB\toolbox\compiler\deploy\win32
+ 
+ 3) To ship off
+your application, you'll need to zip up topfile.ctf, topfile.exe and
+MCRInstaller.exe. Place these files on the end-user's computer and run
+the MCRInstaller.exe (this will change library paths, so you'll have
+to run the installer from an account with the expected permissions).
+
+
+ Everything should now be setup. You should be able to run
+topfile.exe issues.
+

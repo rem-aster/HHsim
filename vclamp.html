@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>HHsim Voltage Clamp Controls</title></head><body bgcolor="#ccffff">
+    <center>
+      <h1>HHsim Voltage Clamp Controls</h1>
+    </center>Switching to Voltage Clamp mode changes the formats of the main display and the stimulus window. Here is how the main display looks. Notice that the &quot;Stimuli&quot; button along the top row has been replaced by a &quot;VStim&quot; button.
+		<p></p>
+		<center>
+<img src="images/vclamp.png">
+</center>
+		<p>In the figure above, the voltage step (bottom trace) has been run; the resulting current is plotted in the top trace. Plotting is done by pressing the green &quot;Run&quot; button.</p><p>
+
+</p><h3> Stimulus Patterns </h3>
+
+The VStim window defines the voltage clamp stimulus patterns for
+voltage clamp experiments.  A stimulus consists of a baseline voltage
+and hold time, followed by up to three "steps", each consisting of a
+voltage and a duration.  There are thus a total of eight parameters.
+All are user-controllable via sliders and editboxes.<p>
+
+</p><center>
+<img src="images/vstim.png">
+</center>
+
+<p>Using the VStim controls, one of these parameters can be
+systematically varied while the rest remain fixed. The parameter to be
+varied is indicated by the purple pushbutton; in the figure above,
+it's the step 1 voltage. The editbox at the bottom of the window
+contains a set of values for this parameter, separated by
+spaces. Three values can be specified, for example, by typing
+&quot;-40 -25 -10&quot;, without the quotes, in the lower text
+box.</p><p>When the green &quot;Run&quot; button is pressed in the
+main window, HHsim runs through each of the stimulus curves shown in
+the VStim window. If you press &quot;Run&quot; again it will generate
+more curves, of different colors, that overlay the first curve(s). To
+avoid this, press the &quot;Clear&quot; button in the main window
+before hitting &quot;Run&quot; again.</p><p>
+
+If you want to vary more than one stimulus parameter at a time, e.g.,
+changing both the step 1 voltage and duration, you can do so by making
+the variations manually.  Set up your first curve using the sliders,
+press "Run", then set up your next curve, press "Run" again, and so
+on.  Another trick you can do by not hitting "Clear" is compare the
+effects of stimuli in the presence vs. absence of a drug.  Set up your
+family of curves and press "Run".  Then apply a drug using the Drugs
+window, and press "Run" again to run through the same stimuli.  This
+will plot another set of lines, with different colors, on top of the
+first set.  A total of eight lines can be plotted.
+</p><p>
+
+<a href="http://www.cs.cmu.edu/%7Edst/HHsim/guide.html">Back to the Guide to Using HHsim</a></p><p>
+
+    </p><hr>
+    <address><a href="mailto:dst@cs.cmu.edu">Dave Touretzky</a></address>
+<!-- Created: Sat Nov 16 17:55:52 EST 2002 -->
+<!-- hhmts start -->
+Last modified: Sun Aug 24 02:25:23 EDT 2008
+<!-- hhmts end -->
+  
+</body></html>

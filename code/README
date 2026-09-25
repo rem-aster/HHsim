@@ -1,0 +1,66 @@
+HHsim - A  Graphical Hodgkin-Huxley Simulator in MATLAB
+
+	Version 3.7 - August 27, 2025
+
+Copyright (C) 2000,2001,2002,2003,2007,2012,2017,2025 by
+David S. Touretzky, Mark V. Albert, Nathaniel D. Daw,
+Alok Ladsariya and Mahtiyar Bonakdarpour.
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+================================================================
+
+HHsim is a graphical simulation of a section of excitable neuronal
+membrane, using the Hodgkin-Huxley equations.
+
+Design by David S. Touretzky
+Coding by David S. Touretzky, Mark V. Albert, Nathaniel D. Daw,
+          Alok Ladsariya and Mahtiyar Bonakdarpour
+
+Contact information:
+
+	David S. Touretzky
+	Computer Science Department
+	Carnegie Mellon University
+	Pittsburgh, PA 15213-3891
+
+	email: dst@cs.cmu.edu
+	
+
+================================================================
+  RUNNING HHSIM
+
+From Matlab source only:
+  1) start up Matlab
+  2) cd to the directory holding the source code
+  3) type "hhsim"
+
+================================================================
+
+Click on the purple Stim1 or Stim2 buttons to inject a depolarizing or
+hyperpolarizing current stimulus.  Click on the Membrane, Channels, 
+Stimuli or Drugs buttons to view and modify the simulation parameters.
+
+This program was inspired by earlier BASIC and C programs by Professor
+David Wood, and lecture notes by Professor Bard Ermentrout, both at
+the University of Pittsburgh.  Thanks to Professor Jon Johnson at the
+University of Pittsburgh for many helpful suggestions for improving
+the user interface.
+
+This work was supported in part by National Science Foundation grant
+DGE-9987588.  Any opinions, conclusions, or recommendations expressed
+herein are those of the authors and do not necessarily reflect the
+views of the National Science Foundation.
+

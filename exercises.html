@@ -1,0 +1,429 @@
+<!-- X-URL: http://www-2.cs.cmu.edu/~dst/HHsim/exercises.html -->
+<!-- Date: Wed, 15 Jan 2003 16:00:19 GMT -->
+<BASE HREF="http://www-2.cs.cmu.edu/~dst/HHsim/exercises.html">
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>Sample HHSim Exercises</title>
+  </head>
+
+  <body bgcolor="#ccffff">
+    <center><h1>Sample HHSim Exercises</h1></center>
+
+<table border=0>
+
+<tr><td ALIGN=RIGHT>I.</td>
+<td><a href="#part1">Equilibrium Potential</a></td></tr>
+
+<tr><td ALIGN=RIGHT>II.</td>
+<td><a href="#part2">Membrane Potential</a></td></tr>
+
+<tr><td ALIGN=RIGHT>III.</td>
+<td><a href="#part3">The Action Potential</a></td></tr>
+
+<tr><td ALIGN=RIGHT>IV.</td>
+<td><a href="#part4">The Fast Sodium Channel</a></td></tr>
+
+<tr><td ALIGN=RIGHT>V.</td>
+<td><a href="#part5">The Delayed Rectifier</a></td></tr>
+
+<tr><td ALIGN=RIGHT>VI.</td>
+<td><a href="#part6">Voltage-Gated Channel Parameters</a></td></tr>
+</table>
+</p>
+
+<a name=part1>
+<h2>Part I:  Equilibrium Potential</h2>
+
+We will first explore the equilibrium potential of a cell with a
+single channel type.  Click on the Channels button in the main window
+to call up the Channels window.  In the Channels window, turn off the
+all the channels <i>except</i> the first one (passive sodium), by
+clicking on their respective buttons.  The buttons should change color
+to gray when you turn them off.  Notice that the resting potential Vr
+displayed in the Membrane window is now equal to the reversal
+potential for sodium, +52.4 mV.  A mouse click on the red line will
+show you the exact value of Vm.  Vm may not be exactly equal to Vr,
+but clicking the yellow <b>Nudge</b> button a few times will nudge
+things along until the voltage reaches the theoretical asymptote.  Or
+you can click <b>Run</b>, wait a while, and then click
+<b>Stop</b>.</p>
+
+<ul>
+<li>
+Question 1.  Calculate the effect of halving the external sodium
+concentration.  Remember, we're assuming that only sodium channels are
+present.  You will first need to calculate RT/zF at 6.3<sup>o</sup>,
+which you can do from the information provided in the Membrane window.
+Then, confirm your answer in the simulator by changing the
+concentration in the Membrane window and looking at the new value of
+passive Vr.  (You can type new values into any of the boxes in the
+Membrane window, or use the <b>&lt;</b> or <b>&gt;</b> buttons to
+change the values.)</p>
+
+<li> Question 2.  Calculate the [Na+] external concentration required to
+achieve Vr = E<sub>Na</sub>= +55.5 mV.  Confirm your answer using the
+simulator.</p>
+
+</ul>
+
+Hit the <b>Reset</b> button in the Membrane window to restore all
+parameters to their initial values.</p>
+
+<ul><li>
+Question 3.  Suppose we double the temperature from 6.3<sup>o</sup> C to
+12.6<sup>o</sup> C.  What is the new value of Vr?  Explain why Vr doesn't
+double.
+</ul>
+
+
+<a name=part2>
+<h2> Part II: Membrane Potential</h2>
+
+In exercise we will look at the membrane potential with only passive
+channels (no voltage gated sodium or potassium channels.)<p/>
+
+First, <b>reset the simulator</b>.  If you are running from source code using
+Matlab, type "hhsim" again in the Matlab Command Window.  (Don't hit the
+green <b>Run</b> button, and make sure the simulator is stopped before
+you type "hhsim" in the Command Window).  If you're instead running a
+stand-alone executable version of the simulator, just kill the
+application and start it again.  </p>
+
+Turn off the yellow and green plots in the main window by selecting
+"-" in their respective pulldown menus.  Set the cyan (light blue)
+plot to "I_leak", the leakage current.  I_leak is equal to the flow of
+current through the passive channels.  By looking above and below the
+cyan pulldown menu, you will see that the scale of the I_leak plot
+ranges from -0.05 to 0.05 pico-Amp.  Display the Membrane and Channels
+windows as well.</p>
+
+In the Channels window, turn off the two voltage gated channels (pink
+buttons) so that only the three passive channels (green buttons) are
+functional.  Note that the membrane voltage (red line) rises from its
+previous level of roughly -62 mv to a new level of around -48 mv.  The
+simulator stops when the membrane voltage is close to asymptote.  To
+get an exact resting value, click the yellow <b>Nudge</b> button a few
+times until the value displayed for Vm stops changing.</p>
+
+The rise in Vm shows that at the normal resting potential, some
+voltage-gated channels as well as leak channels were open.  When the
+voltage-gated channels are disabled, the only open channels are the
+leak channels, and resting membrane voltage rises.  Since membrane
+current must be 0 at Vrest, the leak current (blue line) is zero.</p>
+
+<ul><li>
+Question 1. Write down the parallel conductance equation for the
+resting potential as a function of equilibrium potentials and
+conductances.  Given the equilibrium potentials shown in the Membrane
+window and the conductances shown in the Channels window, calculate
+the resting potential Vr.</p>
+
+<li> Question 2. You can see from the Channels window that gK is 0.070
+micro-Siemens.  Calculate to two significant digits the value to which
+gK would have to be reduced in order to make Vr be -45 mV.  Verify
+your answer by changing the value of gK in the simulator and seeing
+how the value of passive Vr in the Membrane window changes.</p>
+
+<li> Question 3. We can also manipulate the resting potential Vr by
+changing the ion concentrations.  Obviously it is easier to change the
+concentrations outside the cell than inside.  Suppose we want to raise
+the cell's resting potential to -39 mv, while maintaining a constant
+osmolarity and not disturbing the charge balance.  What ion
+concentrations should we change, and what should their new values be?
+Use the simulator to find the answer empirically.</p>
+</ul>
+
+<a name=part3>
+<h2>Part III: The Action Potential</h2>
+
+Reset the simulator again (see instructions in Part II).  Click on the
+purple <b>Stim1</b> button in the main window to stimulate the cell
+and generate a spike.  You can see the stimulus plotted as a purplish
+line, while the spike is visible as the membrane voltage plotted as a
+red line.  Click on the <b>Stim2</b> button to apply a hyperpolarizing
+pulse to the cell.  Notice that this also results in a spike.</p>
+
+<ul><li>Question 1.  Why does hyperpolarization cause a spike?</p></ul>
+
+Click on the Stimuli button in the main window to call up the Stimulus
+Parameters window.  Notice that button <b>Stim1</b> is set up to
+provide a 1 millisecond stimulus at +10 nano-amps.  Using the slider
+controls, you can add a second pulse to <b>Stim1</b>.  Set up a second
+10 nA pulse 5 msec after the first.  (Note: clicking on the slider
+changes the value by 5.  Clicking on the arrowheads changes the value
+by 1.  You can also type values directly into the box next to each
+slider.  Moving the mouse over a slider or text box dispays some
+pop-up text explaining its function.)</p>
+
+Notice that two pulses spaced 5 msec apart do not cause two spikes.</p>
+
+<ul><li>
+Question 2.  Why doesn't this second pulse cause a second spike?
+Phrase your answer in terms of gates and voltages.</p>
+
+<li>
+Question 3.  How much time must elapse between the end of the first
+pulse and the beginning of the second in order for the second pulse to
+cause a second spike?  (Use the simulator to experiment.)</p>
+</ul>
+
+A negative pulse occuring soon after a positive pulse can prevent a
+spike from occurring.  Set up the <b>Stim1</b> parameters to provide a 5 nA
+pulse folowed 1 msec later by a -5 nA pulse.  You'll see that the 1 ms
+interval is too long to prevent the spike.  Shorter intervals can be
+obtained by typing a fractional value like 0.9 into the text for the
+middle horizontal slider.</p>
+
+<ul><li>
+Question 4.  To the nearest 10th of a millisecond, what is the
+longest delay after a 1 msec 5 nA positive pulse that a 1 msec -5 nA
+pulse can block a spike?</p>
+</ul>
+
+
+<a name=part4>
+<h2>Part IV: The Fast Sodium Channel</h2>
+
+Reset the simulator again.  Press the <b>Stim1</b> button to stimulate
+the cell and generate a spike.  The yellow, green, and cyan (light
+blue) lines in the upper plot display the Hodgkin-Huxley variables m,
+h, and n, respectively.  The variables take on values between 0 and 1.
+Recall that the fast sodium channel conductance is proportional to
+m<sup>3</sup>h, and potassium channel activity is proportional to
+n<sup>4</sup>.</p>
+
+In this exercise we will focus on just the sodium channel, which
+consists of an activation gate and an inactivation gate.  Both these
+gates must be open in order for current to flow.  The m<sup>3</sup>
+term describes the state of the activation gate, and the h term
+describes the state of the inactivation gate.  The closer these values
+are to 1, the more "open" the gate is.</p>
+
+Using the cyan pop-up menu, set the cyan plot to display g_Na, the
+sodium conductance, which is proportional to m<sup>3</sup>h.  The
+numbers above and below the yellow, green, and cyan windows represent
+the y-axis values of the uppermost and lowest dashed lines,
+respectively, in the upper plot.  The range for the cyan plot is now 0
+to 30 pico-Siemens.  Click on <b>Zoom In</b> to get a better view, and use
+the scroll bar to position the plot as necessary.</p>
+
+As you can see, the inactivation gate variable h (green line) has a
+resting value of around 0.5, so it's normally part-way open.  But the
+activation gate variable m (yellow line) normally rests close to 0.
+This is why the total sodium conductance (cyan line) is close to zero
+pico-Siemens at rest.</p>
+
+When a stimulus depolarizes the cell slightly, the activation gate
+opens (yellow line "m" rises), the sodium conductance (cyan line)
+increases, and the cell depolarizes further (red line Vm rises).
+However, as the membrane voltage increases, the inactivation gate
+begins to close (green line "h" decreases to zero), and this causes
+the overall conductance (cyan line, proportional to m<sup>3</sup>h) to
+drop even though the yellow line remains high (activation gate remains
+open) for quite a while.</p>
+
+What eventually causes the yellow line to drop is the repolarization
+of membrane potential (indicated by the red line dropping) as a result
+of opening of voltage dependent potassium channels.  Without the
+potassium channels, the cell would remain depolarized.  To demonstrate
+this, we will do an experiment.</p>
+
+Call up the Channels window and disable the Delayed Rectifier
+(potassium) channel.  There is normally some leakage current through
+this channel when the cell is at rest; removing it triggers a spike.
+The cell depolarizes but cannot repolarize, because now there is no
+active potassium current.  The membrane voltage thus remains high, and
+the yellow line stays high.</p>
+
+<ul><li> Question 1.  looking at the simulator output, at what
+potential does the cell settle after the spike has subsided, i.e.,
+what is the new resting value of Vm?  Click on the red line to measure
+the value.</p></ul>
+
+The spike peak is around +50 mV.  With no active potassium channel
+conductance, the cell does not fully repolarize, but the membrane
+voltage does decline some from the peak value.  Notice that if Vm is
+perturbed from its new resting value by a depolarizing or
+hyperpolarizing stimulus (try the <b>Stim1</b> and <b>Stim2</b>
+buttons) it returns to the new resting value.</p>
+
+The new value of Vm is determined by the conductances of two channel
+types: the leak channels (which have conductance to Na, K, and Cl),
+and the (not quite fully closed) fast voltage dependent sodium
+channels.  Although it may appear that in this state h = 0 and hence
+g_Na = 0, they are actually slightly positive.  Because the leakage
+conductance is so low, the slight steady-state activation of voltage
+gated Na channels still has a large effect on Vrest.</p>
+
+<ul><li>
+Question 2.  Using the parallel conductance equation, calculate the
+conductance of the fast sodium channel in this new resting condition.</p>
+
+<li>Question 3.  Stimulating the cell again (using the <b>Stim1</b>
+button) in this condition will not cause another spike.  Even if you
+raise the stimulus intensity to 20 nA and the duration to 10 msec, the
+cell will not spike.  (Try it.  Turn off the cyan plot by selecting
+"-" in the pop-up menu so you can see the yellow and green plots
+clearly when you hit <b>Stim1</b>.)  What is the explanation for this?</p></ul>
+
+
+<a name=part5>
+<h2>Part V: The Delayed Rectifier</h2>
+
+Reset the simulator again.  Press <b>Stim1</b> to stimulate the cell
+and generate a "normal" spike, for reference.  Then call up the
+Channels window, and disable the fast sodium channel.  The resting
+potential hyperpolarizes only slightly, indicating that very few
+voltage dependent Na channels are open under normal resting
+conditions.</p>
+
+Turn off the yellow plot (select "-") in the pop-up menu and set the
+green plot to "I_K", the delayed rectifier current.</p>
+
+Call up the Stimulus window and set Stim1 to a 100 nA stimulus lasting
+5 msec.  Press the <b>Stim1</b> button in the main simulator window to
+depolarize the cell, and see what happens.</p>
+
+<ul><li> Question 1.  Based on the Vm plot (red line), what is the
+peak value reached by the membrane voltage?  Click on the line to the
+right of the peak, and use the <b>&lt;</b> button to find the maximum.</p>
+
+<li>
+Question 2: after reaching its peak, the membrane voltage quickly
+declines again, even though the stimulus is still on.  What is causing
+this?  Point to some evidence to support your answer.</p>
+
+<li>Question 3: when the stimulus ends, the cell does not simply return to
+its resting value; it undershoots it and then approaches the value
+from below.  Why doesn't it just return to its resting value?</p></ul>
+
+
+<a name=part6>
+<h2>Part VI: Voltage-Gated Channel Parameters</h2>
+
+Hodgkin and Huxley explained the behavior of voltage-gated channels in
+terms of activation and inactivation gates that opened or closed based
+on the membrane voltage.  These "gates" are pieces of channel
+structure (i.e., segments of the amino acid chains that make up the
+channel) which change their shape or position based on the potential
+across the membrane.  The m<sup>3</sup> term in the expression
+m<sup>3</sup>h for the fast sodium channel indicates that three
+segments of the channel must change their conformation to open the
+activation gate, while the h term indicates that only a single piece
+of structure controls the inactivation gate.</p>
+
+At the molecular level channel components do not just sit in a fixed
+position at temperatures above absolute zero,.  They continually
+change their conformation.  However, some conformations are more
+likely than others, and therefore occur more frequently.  The channel
+characteristics determine which configurations are more likely, as a
+function of the current membrane voltage.  The parameter m can be
+viewed as the probability that a particular segment of the activation
+gate is in the configuration required for the gate to be open.
+Alternatively, it can be viewed as the fraction of channels in which
+this segment is in the configuration required for the gate to open.
+Since all three segments must be in the open position for the
+activation gate to be open, and the segments are independent, the
+probability that the gate is open (or equivalently, the fraction of
+channels with open activation gates) is m<sup>3</sup>.</p>
+
+Reset the simulator again.  Call up the Channels window, and press the
+Details button for the fast sodium channel.  This displays a window
+showing the parameters responsible for the behavior of the fast sodium
+channel.  Looking at the top of the display, we see that this channel
+is permeable to the sodium ion, and that its maximum conductance g_max
+is 120 mico-Siemens.</p>
+
+<ul><li>
+Question 1: how does g_max for the fast sodium channel compare with
+the passive sodium conductance?</p></ul>
+
+The left half of the Fast Sodium details window describes the
+activation gate, while the right half describes the inactivation gate.
+The behavior of an activation gate segment is governed by two rates:
+alpha is the rate at which segments move from the closed to the open
+state (causing m to increase), while beta is the rate at which they
+move from the open to the closed state (causing m to decrease).  Alpha
+and beta are determined by exponential functions whose parameters are
+shown in the window.  These equations are functions of Vm.  In the
+graph at the bottom, alpha is plotted in red, while beta is plotted in
+blue.</p>
+
+Looking at this plot, we see that when Vm = -50, alpha is much less
+than beta.  That means segments will move from the open to the closed
+configuration at a higher rate than they move from closed to open.  As
+a result, the net change in m will be a decrease.</p>
+
+<ul><li> Question 2: What relationship must hold between the red and
+blue lines for m to increase?  And, what is the approximate value of
+Vm at which this condition occurs (if there were no other mechanisms
+affecting the cell)?  How does this compare to the cell's normal
+resting potential?</p></ul>
+
+Now press <b>Stim1</b> to trigger a spike, which we will use for
+reference.</p>
+
+The state of the inactivation gate is indicated by the variable h,
+whose parameters are displayed in the right half of the Details
+window.  Suppose we want to lengthen the duration of a spike.  We can
+do that by slowing down the rate at which the inactivation gate
+closes, so that the channel remains open longer.  Beta is the rate at
+which the inactivation gate will close.  Change the beta magnitude
+parameter (c) from 1.0 to 0.4.  Then press the yellow <b>Nudge</b>
+button in the main simulator window a few times.  The cell starts
+spiking and doesn't stop.  Press the red <b>Stop</b> button to stop
+the simulation.  You should notice several things:</p>
+
+<ol>
+<li>The spike width is now greater, as we intended.</p>
+
+<li> The green line (h) decreases more slowly during a spike, and does
+ not get as close to zero as it did previously.  This is the direct
+ consequence of our decreasing the h beta magnitude.</p>
+
+<li> The yellow line (m) stays high for longer.  This is because the
+ cell is remaining depolarized longer.  Remember that it is the
+ closing of the inactivation gate (h) that cuts off the sodium influx
+ and allows the cell to repolarize.  If the gate closes more slowly,
+ Vm stays high longer, and hence the activation gate remains open
+ longer.<p>
+
+<li> The peak of the spike is higher than before.</p>
+
+</ol>
+
+As you can see, the cell is quite sensitive to parameter changes;
+altering a single value produces a complex set of effects.  We may
+conclude that the channels governing a cell's behavior form an
+exquisitely tuned system.  And here we're only dealing with two
+channel types; keep in mind that some cells have a dozen!</p>
+
+<ul><li> Question 3: in order to stop the cell from oscillating on its
+own, we can change the passive channel conductance.  Hit the
+<b>Run</b> button in the main simulator window to continue the
+simulation.  By playing with the value of g_K in the Channels window,
+find a value close to the original value of 0.07 micro-Siemens that
+prevents the cell from spiking spontaneously.  The cell should of
+course still spike in reponse to a stimulus from the <b>Stim1</b>
+button.  Report the g_K value you find, to two significant
+digits.</p></ul>
+
+    <hr>
+This work was supported in part by National Science Foundation grant
+DGE-9987588.  Any opinions, conclusions, or recommendations expressed
+herein are those of the authors and do not necessarily reflect the
+views of the National Science Foundation.
+<p/>
+
+<a href="index.html">Back to main HHsim page</a><p/>
+
+    <hr>
+    <address><a href="mailto:dst@cs.cmu.edu">Dave Touretzky</a></address>
+<!-- Created: Sun Aug 11 03:45:27 EDT 2002 -->
+<!-- hhmts start -->
+Last modified: Sun Sep 13 22:44:04 EDT 2015
+<!-- hhmts end -->
+  </body>
+</html>

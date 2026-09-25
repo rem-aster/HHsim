@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>HHsim Cursor Controls</title></head><body bgcolor="#ccffff">
+    <center>
+      <h1>HHsim Cursor Controls</h1>
+    </center>
+
+The cursor provides a way to measure the value of any plotted
+simulation parameter, and find maxima and minima.  Clicking on any of
+the plot lines in the main window sets the cursor to that point.  The
+cursor is displayed as a colored lozenge matching the color of the
+plot variable being measured.  Setting the cursor also activates the
+cursor panel in the lower right corner.<p>
+
+</p><center>
+<img src="images/cursor1.png">
+</center>
+		<p>In the figure above, the cursor is measuring the resting potential (red line in the upper plot) just before an inhibitory stimulus was applied. The cursor panel in the lower right indicates that the membrane voltage is -61.1 mV at 21.74 msec from the start of the simulation.</p>
+		<h3> Moving the Cursor </h3>
+		
+
+The cursor can be moved to a new location by clicking there.  The
+cursor can be hidden (and the cursor panel deactivated) by clicking
+at any empty point in the plot windows, i.e., where there is no line. The cursor can also be 
+hidden by clicking the close box (marked "X") in the cursor panel.<p>
+
+Once the cursor is set at a point, it can be moved left or right using
+the cursor control buttons in the cursor panel.  The <b>&lt;</b> and
+<b>&gt;</b> buttons nudge the cursor one time-point to the left or
+right, respectively.  The <b>&lt;&lt;</b> and <b>&gt;&gt;</b> buttons
+move the cursor left or right to the nearest local maximum or minimum
+value.  For example, suppose we want to find the greatest amount of
+closure of the sodium inactivation gate (h) after a spike.  Start by
+clicking on the green line to activate the cursor:</p><p>
+
+</p><center>
+<img src="images/cursor2.png">
+</center>
+<p>We see that the value of the inactivation gate parameter, h, is 0.575 at 29.94 msec from the start of the simulation. Next, click on the <b>&gt;&gt;</b> button to move the cursor right to the nearest extreme
+value:</p><p>
+
+</p><center>
+<img src="images/cursor3.png">
+</center>
+<p>
+
+The cursor panel shows that the local minimum value for <i>h</i> is 0.0703, and it occurs at 32.34 msec.</p><p>The <b>var</b> button is used to move the cursor vertically from one plot line to another, to change the variable being measured at that point in time. For example, suppose we wanted to know the value of the potassium activation gate (n) at the peak of a spike. To measure this, set the cursor on the red line (membrane voltage) and use the <b>&lt;&lt;</b> or <b>&gt;&gt;</b> button to find
+the peak.  Then press the <b>var</b> button until the cursor is on the
+cyan line (n), and read the value in the cursor panel.</p><p>
+
+Clicking on the <b>Save</b> button in the cursor panel stores the
+Hodgkin-Huxley values at the current cursor position.  The simulator
+can later be reset to these values by clicking on the <b>Recall</b>
+button.  This feature is useful for resetting the system to a known
+resting state after each of a series of manipulations, so that fair
+comparisons can be made.</p><p>
+
+<a href="http://www.cs.cmu.edu/%7Edst/HHsim/guide.html">Back to the Guide to Using HHsim</a></p><p>
+
+    </p><hr>
+    <address><a href="mailto:dst@cs.cmu.edu">Dave Touretzky</a></address>
+<!-- Created: Sat Nov 16 17:55:52 EST 2002 -->
+<!-- hhmts start -->
+Last modified: Thu Nov  6 05:14:56 EST 2003
+<!-- hhmts end -->
+  
+</body></html>
