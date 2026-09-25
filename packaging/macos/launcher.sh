@@ -30,8 +30,14 @@ end run
 EOF
 }
 
+# В сборке Octave из conda-forge для macOS «bin/octave --no-gui» запускает консольную
+# версию без графики Qt, поэтому вызываем исполняемый файл octave-gui напрямую.
+env_octave() {
+  ls "$ENV_DIR"/libexec/octave/*/exec/*/octave-gui 2>/dev/null | head -1
+}
+
 find_octave() {
-  if [ -f "$ENV_DIR/.hhsim-installed" ] && [ -x "$ENV_DIR/bin/octave" ]; then echo "$ENV_DIR/bin/octave"; return; fi
+  if [ -f "$ENV_DIR/.hhsim-installed" ] && [ -n "$(env_octave)" ]; then env_octave; return; fi
   [ -n "$HHSIM_IGNORE_SYSTEM_OCTAVE" ] && return                               # для проверки установки
   if command -v octave >/dev/null 2>&1; then command -v octave; return; fi   # например, из Homebrew
 }
@@ -57,6 +63,7 @@ install_octave() {
         -p "$ENV_DIR" -c conda-forge --override-channels "octave=$OCTAVE_VERSION" &&
     echo "Проверка Octave..." &&
     OCTAVE_HOME="$ENV_DIR" "$ENV_DIR/bin/octave-cli" --norc --quiet --eval "disp(version)" &&
+    [ -n "$(env_octave)" ] &&
     touch "$ENV_DIR/.hhsim-installed"
   } >> "$LOG" 2>&1
   local status=$?
@@ -91,8 +98,8 @@ if [ -z "$OCTAVE" ]; then
 Подробности записаны в файле ~/Library/HHsim/install.log" "OK" >/dev/null
     exit 1
   fi
-  [ $INTERACTIVE = 1 ] || { echo "$ENV_DIR/bin/octave"; exit 0; }
-  OCTAVE="$ENV_DIR/bin/octave"
+  OCTAVE="$(env_octave)"
+  [ $INTERACTIVE = 1 ] || { echo "$OCTAVE"; exit 0; }
 elif [ $INTERACTIVE = 0 ]; then
   echo "$OCTAVE"; exit 0
 fi
