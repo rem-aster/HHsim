@@ -46,8 +46,15 @@ catch err
     fprintf(2, '  %s: строка %d\n', err.stack(k).name, err.stack(k).line);
   end
 end
-% закрыть окна, не сохраняя их положение
-set(0, 'ShowHiddenHandles', 'on'); delete(get(0, 'Children'));
+% закрыть программу так же, как при закрытии главного окна пользователем
+try
+  close_all;
+  drawnow;
+  assert(isempty(findall(0, 'Type', 'figure')), 'после закрытия остались окна');
+catch err
+  ok = false;
+  fprintf(2, 'ОШИБКА при закрытии: %s\n', err.message);
+end
 if ok, disp('SMOKE TEST OK'); end
 if ~isempty(logfile), diary off; end
 if exist('OCTAVE_VERSION', 'builtin'), exit(~ok); end
