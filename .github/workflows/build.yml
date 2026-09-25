@@ -1,0 +1,143 @@
+# Проверка HHsim в GNU Octave, сборка установщиков и публикация выпуска.
+# Ни MATLAB, ни лицензии не нужны.
+#
+#  * при каждом push и pull request — проверка и сборка (файлы в артефактах запуска);
+#  * при push тега v* (например, v3.7-ru) — ещё и публикация в GitHub Releases.
+
+name: Сборка
+
+on:
+  push:
+    branches: ['**']
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+env:
+  OCTAVE_WIN_VERSION: 11.3.0
+
+jobs:
+  test-linux:
+    name: Проверка в Octave (Linux)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Установить Octave
+        run: sudo apt-get update -q && sudo apt-get install -y -q --no-install-recommends octave xvfb fonts-freefont-otf
+      - name: Автотест
+        run: xvfb-run -a octave --no-gui --norc --quiet --eval "addpath('tests'); smoke_test"
+
+  package:
+    name: Сборка пакетов
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Установить NSIS и 7-Zip
+        run: sudo apt-get update -q && sudo apt-get install -y -q nsis p7zip-full
+      - name: Кэш дистрибутива Octave для Windows
+        uses: actions/cache@v4
+        with:
+          path: build/octave-archive
+          key: octave-w64-${{ env.OCTAVE_WIN_VERSION }}
+      - name: Установщик для Windows
+        run: |
+          mkdir -p build/octave-archive
+          OCTAVE_VERSION=$OCTAVE_WIN_VERSION \
+          OCTAVE_ARCHIVE=build/octave-archive/octave-$OCTAVE_WIN_VERSION-w64.7z \
+            packaging/windows/build.sh dist
+      - name: Приложение для macOS
+        run: packaging/macos/build.sh dist
+      - name: Архив исходного кода
+        run: |
+          V=$(head -1 code/VERSION | sed 's/.*version //; s/\r//')
+          mkdir -p stage/HHsim-$V
+          cp -r code hhsim.sh README.md packaging/start_hhsim.m stage/HHsim-$V/
+          (cd stage && zip -qr ../dist/HHsim-$V-source.zip HHsim-$V)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: HHsim-packages
+          path: dist/*
+          compression-level: 0
+
+  test-windows:
+    name: Проверка установщика (Windows)
+    needs: package
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: HHsim-packages
+          path: dist
+      - name: Установить HHsim
+        shell: pwsh
+        run: |
+          $inst = Get-ChildItem dist\*-Windows-Installer.exe | Select-Object -First 1
+          $p = Start-Process -FilePath $inst.FullName -ArgumentList '/S','/D=C:\HHsim' -Wait -PassThru
+          if ($p.ExitCode -ne 0) { throw "установщик завершился с кодом $($p.ExitCode)" }
+          if (-not (Test-Path 'C:\HHsim\hhsim\code\hhsim.m')) { throw 'HHsim не установлен' }
+          if (-not (Test-Path "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\HHsim\HHsim.lnk")) { throw 'нет ярлыка в меню Пуск' }
+      - name: Автотест во встроенном Octave
+        shell: pwsh
+        run: |
+          $o = 'C:\HHsim\octave\mingw64'
+          $env:PATH = "$o\bin;$o\qt6\bin;C:\HHsim\octave\usr\bin;$env:PATH"
+          $env:QT_PLUGIN_PATH = "$o\qt6\plugins"
+          $env:HHSIM_CODE = 'C:\HHsim\hhsim\code'
+          $env:HHSIM_LOG = "$PWD\smoke.log"
+          $tests = "$PWD\tests"
+          $p = Start-Process -FilePath "$o\bin\octave-gui.exe" -Wait -PassThru `
+                 -ArgumentList "--no-gui --norc --quiet --eval `"addpath('$tests'); smoke_test`""
+          if (Test-Path smoke.log) { Get-Content smoke.log -Encoding utf8 }
+          if ($p.ExitCode -ne 0) { throw "автотест завершился с кодом $($p.ExitCode)" }
+      - name: Удалить HHsim
+        shell: pwsh
+        run: |
+          Start-Process -FilePath 'C:\HHsim\uninstall.exe' -ArgumentList '/S' -Wait
+          Start-Sleep -Seconds 5
+          if (Test-Path 'C:\HHsim\octave') { throw 'деинсталлятор не удалил файлы' }
+
+  test-macos:
+    name: Проверка приложения (macOS)
+    needs: package
+    runs-on: macos-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: HHsim-packages
+          path: dist
+      - name: Установить Octave (Homebrew)
+        run: brew install octave
+      - name: Автотест кода из HHsim.app
+        run: |
+          cd dist && unzip -q *-macOS.zip
+          test -x HHsim.app/Contents/MacOS/HHsim
+          export HHSIM_CODE="$PWD/HHsim.app/Contents/Resources/hhsim/code"
+          cd .. && octave --no-gui --norc --quiet --eval "addpath('tests'); smoke_test"
+
+  release:
+    name: Публикация выпуска
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [test-linux, test-windows, test-macos]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: HHsim-packages
+          path: dist
+      - uses: softprops/action-gh-release@v2
+        with:
+          name: HHsim ${{ github.ref_name }} (русская версия)
+          files: dist/*
+          body: |
+            Русская версия HHsim — графического симулятора Ходжкина–Хаксли. MATLAB не нужен.
+
+            * **Windows 10/11:** `HHsim-3.7-ru-Windows-Installer.exe` — GNU Octave уже внутри.
+            * **macOS 11+:** `HHsim-3.7-ru-macOS.zip` — нужен GNU Octave (`brew install octave`).
+            * **Linux и запуск из исходников:** `HHsim-3.7-ru-source.zip` — нужен GNU Octave 8+ (`./hhsim.sh`).
+
+            Инструкции по установке: https://github.com/rem-aster/HHsim#установка

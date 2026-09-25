@@ -11,7 +11,13 @@
 - openurl: справка ищется рядом с кодом (работает и в скомпилированной
   версии); для открытия используются winopen / open / xdg-open.
 - Исправлена единица проводимости g_польз на панели курсора (было pS).
-- Добавлены скрипты сборки установщиков для Windows и macOS (packaging/).
+- Программа работает в GNU Octave (проверено на 8.4) без изменения
+  модели: оформление окон без whitebg/theme, стрелки прокрутки без шрифта
+  Symbol, без объекта zoom и свойства BackingStore, обход ошибок Octave
+  с rectangle('visible','off') и clf reset (is_octave.m, octave_colors.m,
+  make_cursor.m).
+- Добавлены установщики для Windows (со встроенным GNU Octave) и macOS
+  (packaging/) и автоматическая проверка tests/smoke_test.m.
 
 3.7:
 ---

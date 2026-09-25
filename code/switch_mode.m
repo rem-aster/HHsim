@@ -18,7 +18,7 @@ set(handles.zoomoutbutton,'Enable','on');
 if (vars.vclampmode==0)
   % enter voltage recording mode
   vars.V = -63.39/1000;
-  set(handles.zoom_obj, 'ActionPostCallback', 'slider_val');
+  if ~isempty(handles.zoom_obj), set(handles.zoom_obj, 'ActionPostCallback', 'slider_val'); end
   set(handles.slider,'visible','on');
   set(handles.stimbutton,'visible','on');
   set(handles.vc_zoom_instruction, 'visible', 'off');
@@ -79,7 +79,7 @@ if (vars.vclampmode==0)
   
 
 else % enter voltage clamp mode
-  set(handles.zoom_obj, 'ActionPostCallback', 'vc_slider_val');
+  if ~isempty(handles.zoom_obj), set(handles.zoom_obj, 'ActionPostCallback', 'vc_slider_val'); end
   vars.vertslider_iter = 0;
   vars.move_slider = 0;
   vc_vertslider_set;

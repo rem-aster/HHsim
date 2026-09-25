@@ -189,8 +189,12 @@ setup_main
 disp('Готово.  Нажмите фиолетовую кнопку Стим1 или Стим2, чтобы стимулировать клетку.')
 disp('Щёлкните по линии на графике, чтобы увидеть значение в этой точке.')
 
-handles.zoom_obj = zoom(9);
-set(handles.zoom_obj, 'ActionPostCallback', 'slider_val')
+if is_octave
+  handles.zoom_obj = [];   % Octave has no zoom mode object
+else
+  handles.zoom_obj = zoom(9);
+  set(handles.zoom_obj, 'ActionPostCallback', 'slider_val')
+end
 
 vars.iterating = 1; % suppress iteration while we init things
 init_membrane

@@ -42,6 +42,6 @@ vars.vc_numcurves=0;
 vars.vc_iteration=zeros(1,vars.vc_maxc);
 vars.vc_times=zeros(1,vars.vc_maxc);
 
-handles.cursor = rectangle('Curvature', [1 1], 'visible', 'off');
+handles.cursor = make_cursor;
 
 

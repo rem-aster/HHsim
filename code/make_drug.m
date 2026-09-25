@@ -26,7 +26,7 @@ xlabel(['концентрация (' concunit ')'])
 ylabel('% ингибирования')
 title([abbr ' (' name ') - ' desc],'Color',vars.drugcolor,'FontSize',11);
 
-drug.helpt = text(20,45,'щёлкните здесь, чтобы применить препарат','FontSize',12,'Color','c');
+drug.helpt = text(20,45,'щёлкните, чтобы применить','FontSize',12,'Color','c');
 drug.cursor = line('XData',[0 0],'YData',[0 100], ...
     'LineStyle',':','Color', 'c', 'HitTest','off', ...
     'Visible','off','parent',drug.axis);

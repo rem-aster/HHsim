@@ -19,13 +19,13 @@ axis([1 width 1 height])
 text(185,530,'Препараты','FontSize',20,'Color',vars.drugcolor)
 buttonwidth = 20; buttonheight = 20;
 
-text(115,170,'% ингибирования','FontSize',10)
-text(115,350,'% ингибирования','FontSize',10)
+text(130,170,'% ингибирования','FontSize',10)
+text(130,350,'% ингибирования','FontSize',10)
 
-uicontrol('Style','PushButton','Position',[1 1 40 20],'String','Сброс', ...
+uicontrol('Style','PushButton','Position',[1 1 55 20],'String','Сброс', ...
 	'Callback','callbacks(19)')
 
-uicontrol('Style','PushButton','Position',[51 1 40 20],'String','Скрыть', ...
+uicontrol('Style','PushButton','Position',[60 1 60 20],'String','Скрыть', ...
 	'Callback','callbacks(20)')
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

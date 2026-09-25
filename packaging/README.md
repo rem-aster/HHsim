@@ -1,66 +1,43 @@
-# Сборка установщиков HHsim для Windows и macOS
+# Сборка пакетов HHsim
 
-Установщики собираются с помощью **MATLAB Compiler** из исходного кода в каталоге
-[`code/`](../code). Готовое приложение работает без лицензии MATLAB — ему нужна только
-бесплатная среда выполнения **MATLAB Runtime**, которую установщик скачивает и ставит сам.
+MATLAB и лицензии не нужны: программа работает в свободной среде GNU Octave.
 
-| Платформа | Файл | Где собирать |
-|---|---|---|
-| Windows x86_64 | `HHsim-3.7-ru-Windows-Installer.exe` | Windows |
-| macOS Apple Silicon | `HHsim-3.7-ru-macOS-AppleSilicon-Installer.zip` | Mac на Apple Silicon, MATLAB для Apple Silicon |
-| macOS Intel | `HHsim-3.7-ru-macOS-Intel-Installer.zip` | Mac на Intel (или MATLAB для Intel под Rosetta) |
+| Файл | Что делает |
+|---|---|
+| `start_hhsim.m` | Загрузчик: запускает `hhsim` в Octave, ждёт закрытия главного окна и выходит |
+| `windows/build.sh`, `windows/hhsim.nsi` | Установщик для Windows (NSIS) со встроенным GNU Octave для Windows |
+| `macos/build.sh`, `macos/launcher.sh`, `macos/Info.plist` | `HHsim.app` для macOS; использует Octave из Homebrew и при его отсутствии предлагает установить |
+| `hhsim.ico`, `hhsim.png`, `macos/hhsim.icns` | Значок программы |
 
-MATLAB Compiler не умеет собирать приложения для другой ОС, поэтому каждый установщик
-собирается на своей платформе.
+## Windows
 
-## Вариант 1. Локально, в своём MATLAB
-
-Нужны MATLAB R2020b или новее и MATLAB Compiler (рекомендуется R2025a+, как и для
-оригинальной версии 3.7).
-
-```matlab
-cd путь/к/HHsim
-addpath packaging
-build_installers            % результат появится в каталоге dist/
+```sh
+sudo apt install curl p7zip-full nsis     # или то же в MSYS2 на Windows
+packaging/windows/build.sh                # -> dist/HHsim-3.7-ru-Windows-Installer.exe
 ```
 
-По умолчанию установщик скачивает MATLAB Runtime во время установки
-(`RuntimeDelivery = 'web'`) и весит несколько мегабайт. Чтобы получить автономный
-установщик со встроенным Runtime (несколько гигабайт, установка без Интернета):
+Скрипт скачивает официальный архив Octave для Windows (`OCTAVE_VERSION`, по умолчанию 11.3.0)
+и распаковывает его без компилятора, заголовков, статических библиотек, документации и
+дополнительных пакетов (≈1,5 ГБ вместо 2,8 ГБ). Установщик ставит программу в `C:\HHsim`
+(без прав администратора), запускает штатную настройку Octave (`post-install.bat`,
+`fc_update.bat`) и создаёт ярлыки. Ярлык запускает
+`octave.vbs --no-gui --eval start_hhsim` из каталога `C:\HHsim\hhsim`.
 
-```matlab
-build_installers('dist', 'installer')
+Тихая установка: `HHsim-3.7-ru-Windows-Installer.exe /S /D=C:\HHsim`.
+
+## macOS
+
+```sh
+packaging/macos/build.sh                  # -> dist/HHsim-3.7-ru-macOS.zip
 ```
 
-## Вариант 2. Автоматически, в GitHub Actions
+Собирать можно на любой ОС. Приложение не содержит Octave: собрать переносимый Octave для
+macOS сложно, а Homebrew ставит его одной командой (`brew install octave`). При первом
+запуске код копируется в `~/Library/Application Support/HHsim/<версия>`, потому что
+программа сохраняет файлы рядом с кодом.
 
-Workflow [`.github/workflows/build-installers.yml`](../.github/workflows/build-installers.yml)
-собирает все три установщика и архив исходного кода на виртуальных машинах GitHub:
+## Проверка
 
-* вручную — вкладка **Actions → «Сборка установщиков» → Run workflow**
-  (файлы появятся в артефактах запуска);
-* при push тега `v*` (например, `git tag v3.7-ru && git push origin v3.7-ru`) —
-  файлы дополнительно публикуются в **GitHub Releases**, откуда на них ссылается
-  страница загрузки (`index.html`).
-
-Бесплатная лицензия MATLAB для публичных репозиториев на GitHub Actions **не включает
-MATLAB Compiler**, поэтому нужен собственный токен:
-
-1. Получите у MathWorks batch-токен (*MATLAB batch licensing token*) для лицензии,
-   в которую входит MATLAB Compiler (подробности:
-   <https://github.com/mathworks-ref-arch/matlab-dockerfile/blob/main/alternates/non-interactive/MATLAB-BATCH.md>).
-2. В репозитории откройте **Settings → Secrets and variables → Actions → New repository secret**
-   и создайте секрет `MLM_LICENSE_TOKEN` с этим токеном.
-
-Без токена задание архива исходного кода выполнится, а задания установщиков завершатся
-с понятной ошибкой.
-
-## Примечания
-
-* Все `.m`-файлы из `code/` добавляются в сборку явно: многие функции вызываются из
-  строковых обратных вызовов интерфейса, которые анализ зависимостей не находит.
-  Кроме того, они перечислены в директивах `%#function` в `hhsim.m`.
-* Справка (`code/help/`) входит в сборку; кнопка «?» в программе открывает её в браузере.
-* Приложения не подписаны сертификатами Microsoft/Apple, поэтому при первом запуске
-  Windows SmartScreen и macOS Gatekeeper показывают предупреждение. Как его обойти,
-  написано в инструкции по установке в [`index.html`](../index.html).
+`tests/smoke_test.m` запускает программу, подаёт Стим1 и проверяет спайк, затем прогоняет
+протокол фиксации потенциала. В CI (`.github/workflows/build.yml`) он выполняется в Octave
+на Linux, во встроенном Octave после установки на Windows и в Octave из Homebrew на macOS.

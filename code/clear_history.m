@@ -41,7 +41,7 @@ vars.Itot_hist = NaN * ones(1,vars.varplotdata_size);
 vars.time_hist = zeros(1,vars.varplotdata_size);
 
 % preparing the cursor
-handles.cursor = rectangle('Curvature', [1 1], 'visible', 'off');
+handles.cursor = make_cursor;
 userdata = get(handles.mainplot, 'UserData');
 set(userdata.lines(1), 'ButtonDownFcn', 'line_click(1)');
 set(userdata.lines(2), 'ButtonDownFcn', 'line_click(2)');
