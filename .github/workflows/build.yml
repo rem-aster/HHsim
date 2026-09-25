@@ -134,6 +134,19 @@ jobs:
           echo "Octave: $OCT"
           test -x "$OCT"
           echo "OCT=$OCT" >> "$GITHUB_ENV"
+      - name: Диагностика Octave (Qt)
+        continue-on-error: true
+        run: |
+          E="$(dirname "$(dirname "$OCT")")"
+          export OCTAVE_HOME="$E"
+          ls -la "$E/bin" | grep -i -E "octave|qt" || true
+          file "$OCT" || true
+          ls "$E"/libexec/octave/*/exec/*/ || true
+          ls "$E/plugins" 2>/dev/null | head || true
+          cat "$E/bin/qt.conf" 2>/dev/null || echo "нет bin/qt.conf"
+          QT_DEBUG_PLUGINS=1 "$OCT" --no-gui --norc --quiet --eval "disp(available_graphics_toolkits()); disp(graphics_toolkit()); disp(OCTAVE_HOME)" 2>&1 | tail -40
+          G=$(ls "$E"/libexec/octave/*/exec/*/octave-gui | head -1)
+          QT_DEBUG_PLUGINS=1 "$G" --no-gui --norc --quiet --eval "disp(available_graphics_toolkits())" 2>&1 | tail -40
       - name: Автотест в установленном Octave
         run: |
           export OCTAVE_HOME="$(dirname "$(dirname "$OCT")")"
