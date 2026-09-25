@@ -29,11 +29,11 @@ workflow соберёт файлы и прикрепит их к GitHub Release.
 
 ## Выпуски
 
-Файлы для скачивания публикует workflow `.github/workflows/build.yml` при отправке тега `v*`:
+Файлы для скачивания публикует workflow `.github/workflows/build.yml` — одним из двух способов:
 
-```sh
-git tag v3.7-ru && git push origin v3.7-ru
-```
+* на GitHub: вкладка **Actions** → **«Сборка»** → **Run workflow**, отметить
+  «Опубликовать выпуск» (тег создастся сам);
+* или отправкой тега: `git tag v3.7-ru && git push origin v3.7-ru`.
 
 Имена файлов выпуска должны совпадать со ссылками в `README.md`
 (`releases/latest/download/<имя файла>`): `HHsim-3.7-ru-Windows-Installer.exe`,

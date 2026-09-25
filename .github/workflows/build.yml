@@ -12,6 +12,15 @@ on:
     tags: ['v*']
   pull_request:
   workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Опубликовать выпуск (создать тег и GitHub Release)'
+        type: boolean
+        default: false
+      tag:
+        description: 'Тег выпуска'
+        type: string
+        default: 'v3.7-ru'
 
 env:
   OCTAVE_WIN_VERSION: 11.3.0
@@ -119,7 +128,7 @@ jobs:
 
   release:
     name: Публикация выпуска
-    if: startsWith(github.ref, 'refs/tags/v')
+    if: startsWith(github.ref, 'refs/tags/v') || (github.event_name == 'workflow_dispatch' && inputs.publish)
     needs: [test-linux, test-windows, test-macos]
     runs-on: ubuntu-latest
     permissions:
@@ -131,7 +140,10 @@ jobs:
           path: dist
       - uses: softprops/action-gh-release@v2
         with:
-          name: HHsim ${{ github.ref_name }} (русская версия)
+          tag_name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || inputs.tag }}
+          target_commitish: ${{ github.sha }}
+          name: HHsim ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || inputs.tag }} (русская версия)
+          make_latest: true
           files: dist/*
           body: |
             ## Скачать
