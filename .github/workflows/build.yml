@@ -134,10 +134,10 @@ jobs:
           name: HHsim ${{ github.ref_name }} (русская версия)
           files: dist/*
           body: |
-            Русская версия HHsim — графического симулятора Ходжкина–Хаксли. MATLAB не нужен.
+            ## Скачать
 
-            * **Windows 10/11:** `HHsim-3.7-ru-Windows-Installer.exe` — GNU Octave уже внутри.
-            * **macOS 11+:** `HHsim-3.7-ru-macOS.zip` — нужен GNU Octave (`brew install octave`).
-            * **Linux и запуск из исходников:** `HHsim-3.7-ru-source.zip` — нужен GNU Octave 8+ (`./hhsim.sh`).
+            * 🪟 **Windows 10/11:** [HHsim-3.7-ru-Windows-Installer.exe](https://github.com/rem-aster/HHsim/releases/latest/download/HHsim-3.7-ru-Windows-Installer.exe)
+            * 🍎 **Mac:** [HHsim-3.7-ru-macOS.zip](https://github.com/rem-aster/HHsim/releases/latest/download/HHsim-3.7-ru-macOS.zip)
+            * 🐧 **Linux:** [HHsim-3.7-ru-source.zip](https://github.com/rem-aster/HHsim/releases/latest/download/HHsim-3.7-ru-source.zip)
 
-            Инструкции по установке: https://github.com/rem-aster/HHsim#установка
+            Пошаговая инструкция по установке: https://github.com/rem-aster/HHsim#readme

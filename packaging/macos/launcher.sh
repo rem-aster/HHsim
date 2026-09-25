@@ -14,15 +14,23 @@ find_octave() {
 
 OCTAVE="$(find_octave)"
 if [ -z "$OCTAVE" ]; then
-  if command -v brew >/dev/null 2>&1; then
-    ANSWER=$(osascript -e 'button returned of (display dialog "Для работы HHsim нужна свободная программа GNU Octave, но она не найдена.\n\nУстановить её сейчас через Homebrew? Откроется окно Терминала; установка займёт 5–15 минут. Когда она закончится, запустите HHsim снова." buttons {"Отмена", "Установить"} default button "Установить" with title "HHsim" with icon caution)' 2>/dev/null)
-    if [ "$ANSWER" = "Установить" ]; then
-      osascript -e 'tell application "Terminal" to activate' \
-                -e 'tell application "Terminal" to do script "brew install octave && echo && echo \"Готово. Теперь можно запустить HHsim.\""'
-    fi
-  else
-    ANSWER=$(osascript -e 'button returned of (display dialog "Для работы HHsim нужна свободная программа GNU Octave, но она не найдена.\n\n1. Установите Homebrew (инструкция на https://brew.sh).\n2. В Терминале выполните: brew install octave\n3. Запустите HHsim снова." buttons {"Закрыть", "Открыть brew.sh"} default button "Открыть brew.sh" with title "HHsim" with icon caution)' 2>/dev/null)
-    [ "$ANSWER" = "Открыть brew.sh" ] && open "https://brew.sh/ru/"
+  ANSWER=$(osascript -e 'button returned of (display dialog "Для работы HHsim нужна бесплатная программа GNU Octave. Её нужно установить один раз.\n\nНажмите «Установить» — откроется окно Терминала. Если там попросят пароль, введите пароль от вашего Mac (символы при вводе не отображаются — это нормально) и нажмите Return. Если попросят «Press RETURN», нажмите Return. Установка займёт 10–20 минут.\n\nКогда в Терминале появится слово «Готово», закройте его и снова откройте HHsim." buttons {"Отмена", "Установить"} default button "Установить" with title "HHsim" with icon note)' 2>/dev/null)
+  if [ "$ANSWER" = "Установить" ]; then
+    SCRIPT="${TMPDIR:-/tmp}/hhsim-install-octave.command"
+    cat > "$SCRIPT" <<'INSTALL'
+#!/bin/bash
+echo "Установка GNU Octave для HHsim..."
+if ! command -v brew >/dev/null 2>&1 && [ ! -x /opt/homebrew/bin/brew ] && [ ! -x /usr/local/bin/brew ]; then
+  echo "Сначала устанавливается Homebrew (менеджер программ для macOS)."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || { echo "Не удалось установить Homebrew."; exit 1; }
+fi
+eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shellenv)"
+brew install octave || { echo "Не удалось установить Octave."; exit 1; }
+echo
+echo "Готово. Закройте это окно и снова откройте HHsim."
+INSTALL
+    chmod +x "$SCRIPT"
+    open -a Terminal "$SCRIPT"
   fi
   exit 1
 fi
