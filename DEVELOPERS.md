@@ -21,19 +21,17 @@ packaging/macos/build.sh            # -> dist/HHsim-3.7-ru-macOS.zip
 xvfb-run octave --no-gui --eval "addpath('tests'); smoke_test"
 ```
 
-Чтобы опубликовать выпуск, отправьте тег: `git tag v3.7-ru && git push origin v3.7-ru` —
-workflow соберёт файлы и прикрепит их к GitHub Release.
 
 Изменения относительно оригинальной версии 3.7 перечислены в [`code/CHANGES`](code/CHANGES).
 Логика моделирования не менялась.
 
 ## Выпуски
 
-Файлы для скачивания публикует workflow `.github/workflows/build.yml` — одним из двух способов:
-
-* на GitHub: вкладка **Actions** → **«Сборка»** → **Run workflow**, отметить
-  «Опубликовать выпуск» (тег создастся сам);
-* или отправкой тега: `git tag v3.7-ru && git push origin v3.7-ru`.
+Выпуск публикуется только вручную: на GitHub откройте вкладку **Actions** → **«Сборка»** →
+**Run workflow**, оставьте галочку «Опубликовать выпуск», укажите тег (например, `v3.7-ru`)
+и нажмите **Run workflow**. Workflow соберёт пакеты, прогонит проверки на Linux, Windows и
+macOS и только после этого создаст тег и GitHub Release с файлами. Если тег уже есть,
+файлы выпуска будут обновлены.
 
 Имена файлов выпуска должны совпадать со ссылками в `README.md`
 (`releases/latest/download/<имя файла>`): `HHsim-3.7-ru-Windows-Installer.exe`,

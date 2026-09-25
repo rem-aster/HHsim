@@ -2,21 +2,21 @@
 # Ни MATLAB, ни лицензии не нужны.
 #
 #  * при каждом push и pull request — проверка и сборка (файлы в артефактах запуска);
-#  * при push тега v* (например, v3.7-ru) — ещё и публикация в GitHub Releases.
+#  * публикация в GitHub Releases — только вручную: Actions → «Сборка» → Run workflow
+#    (галочка «Опубликовать выпуск» и имя тега; тег создаётся автоматически).
 
 name: Сборка
 
 on:
   push:
     branches: ['**']
-    tags: ['v*']
   pull_request:
   workflow_dispatch:
     inputs:
       publish:
         description: 'Опубликовать выпуск (создать тег и GitHub Release)'
         type: boolean
-        default: false
+        default: true
       tag:
         description: 'Тег выпуска'
         type: string
@@ -128,7 +128,7 @@ jobs:
 
   release:
     name: Публикация выпуска
-    if: startsWith(github.ref, 'refs/tags/v') || (github.event_name == 'workflow_dispatch' && inputs.publish)
+    if: github.event_name == 'workflow_dispatch' && inputs.publish
     needs: [test-linux, test-windows, test-macos]
     runs-on: ubuntu-latest
     permissions:
@@ -140,9 +140,9 @@ jobs:
           path: dist
       - uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || inputs.tag }}
+          tag_name: ${{ inputs.tag }}
           target_commitish: ${{ github.sha }}
-          name: HHsim ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || inputs.tag }} (русская версия)
+          name: HHsim ${{ inputs.tag }} (русская версия)
           make_latest: true
           files: dist/*
           body: |
