@@ -6,7 +6,7 @@ HHsim — учебная программа по нейрофизиологии.
 
 Программа **бесплатная**. MATLAB для неё **не нужен**.
 
-![Главное окно HHsim](code/help/images/main.png)
+![Главное окно HHsim на Windows](docs/screenshot.png)
 
 ---
 
